@@ -72,6 +72,12 @@
     <Compile Include="DetailCustomer.Designer.cs">
       <DependentUpon>DetailCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetailFoods.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailFoods.Designer.cs">
+      <DependentUpon>DetailFoods.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entity\balance.cs">
       <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DetailCustomer.resx">
       <DependentUpon>DetailCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailFoods.resx">
+      <DependentUpon>DetailFoods.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FoodForm.resx">
       <DependentUpon>FoodForm.cs</DependentUpon>

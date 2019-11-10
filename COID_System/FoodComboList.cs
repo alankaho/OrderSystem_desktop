@@ -18,7 +18,7 @@ namespace COID_System
         {
             InitializeComponent();
             
-            checkedListBox1 = null;
+            FillListCombo();
         }
 
         private OrderSystemEntities db;
@@ -35,17 +35,24 @@ namespace COID_System
         }
         void FillListCombo()
         {
-
-            //  dataGridView1.DataSource = db.categories.ToList<category>();
             db = new OrderSystemEntities();
-            // db.comboes.Load();
+            
 
             foreach (var i in db.comboes)
             {
-                checkedListBox1.Items.Add(i);
+                checkedListBox2.Items.Add(i.name);
             }
 
+        }
+        void FillListFood()
+        {
+            db = new OrderSystemEntities();
 
+
+            foreach (var i in db.foods)
+            {
+                checkedListBox1.Items.Add(i.name);
+            }
 
         }
     }

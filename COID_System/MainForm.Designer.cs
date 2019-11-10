@@ -35,8 +35,8 @@
             this.buttonEmployee = new System.Windows.Forms.Button();
             this.buttonCustomerTab = new System.Windows.Forms.Button();
             this.buttonMenuPlanTab = new System.Windows.Forms.Button();
-            this.foodComboList1 = new COID_System.FoodComboList();
-            this.detailCustomer1 = new COID_System.DetailCustomer();
+            this.entityConnection1 = new System.Data.Entity.Core.EntityClient.EntityConnection();
+            this.detailFoods1 = new COID_System.DetailFoods();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,27 +124,19 @@
             this.buttonMenuPlanTab.UseVisualStyleBackColor = false;
             this.buttonMenuPlanTab.Click += new System.EventHandler(this.buttonMenuPlan_Click);
             // 
-            // foodComboList1
+            // detailFoods1
             // 
-            this.foodComboList1.Location = new System.Drawing.Point(244, 35);
-            this.foodComboList1.Name = "foodComboList1";
-            this.foodComboList1.Size = new System.Drawing.Size(945, 571);
-            this.foodComboList1.TabIndex = 1;
-            // 
-            // detailCustomer1
-            // 
-            this.detailCustomer1.Location = new System.Drawing.Point(244, 35);
-            this.detailCustomer1.Name = "detailCustomer1";
-            this.detailCustomer1.Size = new System.Drawing.Size(981, 589);
-            this.detailCustomer1.TabIndex = 2;
+            this.detailFoods1.Location = new System.Drawing.Point(242, 21);
+            this.detailFoods1.Name = "detailFoods1";
+            this.detailFoods1.Size = new System.Drawing.Size(945, 571);
+            this.detailFoods1.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1256, 636);
-            this.Controls.Add(this.detailCustomer1);
-            this.Controls.Add(this.foodComboList1);
+            this.Controls.Add(this.detailFoods1);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -165,7 +157,7 @@
         private System.Windows.Forms.Button buttonMenuPlanTab;
         
         private System.Windows.Forms.Button buttonExit;
-        private FoodComboList foodComboList1;
-        private DetailCustomer detailCustomer1;
+        private System.Data.Entity.Core.EntityClient.EntityConnection entityConnection1;
+        private DetailFoods detailFoods1;
     }
 }

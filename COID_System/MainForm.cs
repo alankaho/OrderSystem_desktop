@@ -25,8 +25,8 @@ namespace COID_System
 
         private void buttonMenuPlan_Click(object sender, EventArgs e)
         {
-            foodComboList1.Show();
-            detailCustomer1.Hide();
+           
+            
            
         }
 
@@ -45,8 +45,8 @@ namespace COID_System
 
         private void buttonCustomerTab_Click(object sender, EventArgs e)
         {
-            foodComboList1.Hide();
-            detailCustomer1.Show();
+           
+         
         }
     }
 }
