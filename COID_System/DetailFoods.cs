@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +74,7 @@ namespace COID_System
         //fill data to Food List
         void FillListFood()
         {
+            listBoxFood.Items.Clear();
             db = new OrderSystemEntities();
             foreach (var i in db.foods)
             {
@@ -120,27 +122,40 @@ namespace COID_System
 
 
         }
-
+        //button to delete + cancel add/edit
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if (addMode == true)
+            if (addMode == true || editMode == true)
             {
-                AddModeOff();
+                offMode();
             }
-        }
+            else
+            {
+                if (MessageBox.Show("Are You Sure to Delete this Record ?", "EF CRUD Operation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    foodSelected = parseInputToFood();
+                    using (OrderSystemEntities db = new OrderSystemEntities())
+                    {
+                        var entry = db.Entry(foodSelected);
+                        if (entry.State == EntityState.Detached)
+                            db.foods.Attach(foodSelected);
+                        db.foods.Remove(foodSelected);
+                        db.SaveChanges();
+                        FillListFood();
+                        offMode();
 
+                        MessageBox.Show("Deleted Successfully");
+                    }
+                }
+            }
+
+        }
+        //confirm button + edit button
         private void button2_Click(object sender, EventArgs e)
         {
             if (addMode == true)
             {
-                category category = new category();
-                category = db.categories.FirstOrDefault(x => x.name == comboBoxCategory.Text);
-                foodSelected = new food();
-                foodSelected.id = textBoxID.Text.Trim();
-                foodSelected.name = textBoxName.Text.Trim();
-                foodSelected.description = textBoxDescription.Text.Trim();
-                foodSelected.price = float.Parse(textBoxPrice.Text);
-                foodSelected.categoryID = category.id;
+                foodSelected = parseInputToFood();
                 using (OrderSystemEntities db = new OrderSystemEntities())
                 {
 
@@ -148,43 +163,90 @@ namespace COID_System
 
                     db.SaveChanges();
                 }
-                AddModeOff();
-                
+                offMode();
+                FillListFood();
                 MessageBox.Show("done!");
                 return;
             }
 
             if (editMode == false)
             {
-                editMode = true;
-
+                editModeOn();
             }
+            else
+            {
+                foodSelected = parseInputToFood();
+
+                using (OrderSystemEntities db = new OrderSystemEntities())
+                {
+
+                    db.Entry(foodSelected).State = EntityState.Modified;
+
+                    db.SaveChanges();
+                }
+                offMode();
+                FillListFood();
+                MessageBox.Show("done!");
+            }
+
+            return;
         }
 
-        void editModeOn
+        void editModeOn()
         {
+           
+            {
+                textBoxName.ReadOnly = false;
+                textBoxDescription.ReadOnly = false;
+                textBoxPrice.ReadOnly = false;
+                textBoxID.ReadOnly = false;
+                // comboBoxCategory.Enabled = true;
+                buttonAdd.Enabled = false;
+                editMode = true;
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button1.Text = "Cancel";
+                button2.Text = "Confirm";
+                listBoxFood.Enabled = false;
+            }
 
         }
 
-        void editModeOff
+        void editModeOff()
         {
-
+            editMode = false;
         }
 
-        private void AddModeOff()
+        private void offMode()
         {
             textBoxName.ReadOnly = true;
             textBoxDescription.ReadOnly = true;
             textBoxPrice.ReadOnly = true;
             textBoxID.ReadOnly = true;
             // comboBoxCategory.Enabled = true;
+            textBoxName.Text = textBoxDescription.Text = textBoxPrice.Text = textBoxID.Text = comboBoxCategory.Text= "";
             listBoxFood.Enabled = true;
             addMode = false;
-            button2.Text = "Delete";
-            button1.Text = "Edit";
+            editMode = false;
+            button2.Text = "Edit";
+            button1.Text = "Delete";
+            
             button1.Enabled = false;
             button2.Enabled = false;
             buttonAdd.Enabled = true;
+        }
+
+        private food parseInputToFood()
+        {
+            category category = new category();
+            category = db.categories.FirstOrDefault(x => x.name == comboBoxCategory.Text);
+            foodSelected = new food();
+            foodSelected.id = textBoxID.Text.Trim();
+            foodSelected.name = textBoxName.Text.Trim();
+            foodSelected.description = textBoxDescription.Text.Trim();
+            foodSelected.price = float.Parse(textBoxPrice.Text);
+            foodSelected.categoryID = category.id;
+            return foodSelected;
         }
     }
 }
