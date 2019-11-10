@@ -41,6 +41,8 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.buttonAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxID = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -54,7 +56,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 33);
+            this.label1.Location = new System.Drawing.Point(34, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 17);
             this.label1.TabIndex = 0;
@@ -64,7 +66,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 83);
+            this.label2.Location = new System.Drawing.Point(34, 105);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 17);
             this.label2.TabIndex = 1;
@@ -75,13 +77,15 @@
             // 
             this.textBoxName.Location = new System.Drawing.Point(94, 33);
             this.textBoxName.Name = "textBoxName";
+            this.textBoxName.ReadOnly = true;
             this.textBoxName.Size = new System.Drawing.Size(403, 22);
             this.textBoxName.TabIndex = 2;
             // 
             // textBoxPrice
             // 
-            this.textBoxPrice.Location = new System.Drawing.Point(94, 83);
+            this.textBoxPrice.Location = new System.Drawing.Point(94, 105);
             this.textBoxPrice.Name = "textBoxPrice";
+            this.textBoxPrice.ReadOnly = true;
             this.textBoxPrice.Size = new System.Drawing.Size(136, 22);
             this.textBoxPrice.TabIndex = 3;
             // 
@@ -97,6 +101,7 @@
             // 
             // buttonChangeImage
             // 
+            this.buttonChangeImage.Enabled = false;
             this.buttonChangeImage.Location = new System.Drawing.Point(311, 288);
             this.buttonChangeImage.Name = "buttonChangeImage";
             this.buttonChangeImage.Size = new System.Drawing.Size(186, 49);
@@ -107,7 +112,7 @@
             // Lable3
             // 
             this.Lable3.AutoSize = true;
-            this.Lable3.Location = new System.Drawing.Point(23, 126);
+            this.Lable3.Location = new System.Drawing.Point(23, 144);
             this.Lable3.Name = "Lable3";
             this.Lable3.Size = new System.Drawing.Size(65, 17);
             this.Lable3.TabIndex = 7;
@@ -117,7 +122,8 @@
             // 
             this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(94, 126);
+            this.comboBoxCategory.ItemHeight = 16;
+            this.comboBoxCategory.Location = new System.Drawing.Point(94, 144);
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(194, 24);
             this.comboBoxCategory.TabIndex = 8;
@@ -144,13 +150,15 @@
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(113, 38);
             this.buttonAdd.TabIndex = 10;
-            this.buttonAdd.Text = "Add new";
+            this.buttonAdd.Text = "Add new food";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel1.Controls.Add(this.textBoxID);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBoxDescription);
             this.panel1.Controls.Add(this.button2);
@@ -168,6 +176,23 @@
             this.panel1.Size = new System.Drawing.Size(524, 498);
             this.panel1.TabIndex = 11;
             // 
+            // textBoxID
+            // 
+            this.textBoxID.Location = new System.Drawing.Point(94, 74);
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.ReadOnly = true;
+            this.textBoxID.Size = new System.Drawing.Size(83, 22);
+            this.textBoxID.TabIndex = 14;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(55, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(19, 17);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Id";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -182,6 +207,7 @@
             this.textBoxDescription.Location = new System.Drawing.Point(94, 188);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.ReadOnly = true;
             this.textBoxDescription.Size = new System.Drawing.Size(194, 231);
             this.textBoxDescription.TabIndex = 11;
             // 
@@ -194,6 +220,7 @@
             this.button2.TabIndex = 10;
             this.button2.Text = "Edit";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -204,6 +231,7 @@
             this.button1.TabIndex = 9;
             this.button1.Text = "Delete";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // radioButtonFood
             // 
@@ -267,5 +295,7 @@
         private System.Windows.Forms.RadioButton radioButtonCombo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.Label label4;
     }
 }
