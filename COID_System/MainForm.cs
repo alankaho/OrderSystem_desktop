@@ -15,6 +15,7 @@ namespace COID_System
     {
         
 
+        
         public MainForm()
         {
             InitializeComponent();
@@ -40,13 +41,29 @@ namespace COID_System
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            detailFoods1.ComboClicked += new
+                EventHandler(ShowComboTab);
+            detailCombo1.FoodClicked += new
+                EventHandler(ShowFoodTab);
         }
+
 
         private void buttonCustomerTab_Click(object sender, EventArgs e)
         {
            
          
+        }
+
+        public void ShowFoodTab(object sender, EventArgs e)
+        {
+            detailFoods1.Show();
+            detailCombo1.Hide();
+        }
+
+        public void ShowComboTab(object sender, EventArgs e)
+        {
+            detailFoods1.Hide();
+            detailCombo1.Show();
         }
     }
 }

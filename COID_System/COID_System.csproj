@@ -45,11 +45,14 @@
     <Reference Include="MessagingToolkit.QRCode">
       <HintPath>E:\Personal\Study\MessagingToolkit.QRCode.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,6 +62,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\DaoFoodCombo.cs" />
@@ -66,6 +70,12 @@
     <Compile Include="DAO\DaoFood.cs" />
     <Compile Include="DAO\DbConnect.cs" />
     <Compile Include="DAO\DaoCategory.cs" />
+    <Compile Include="DetailCombo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailCombo.Designer.cs">
+      <DependentUpon>DetailCombo.cs</DependentUpon>
+    </Compile>
     <Compile Include="DetailCustomer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,6 +188,9 @@
     </Compile>
     <EmbeddedResource Include="CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailCombo.resx">
+      <DependentUpon>DetailCombo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetailCustomer.resx">
       <DependentUpon>DetailCustomer.cs</DependentUpon>

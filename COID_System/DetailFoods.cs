@@ -18,16 +18,23 @@ namespace COID_System
         private bool addMode { get; set; }
         private bool editMode { get; set; }
         private food foodSelected;
+        public event EventHandler ComboClicked;
+
 
         public DetailFoods()
         {
 
             InitializeComponent();
+            
+        }
+
+
+        public void NewForm()
+        {
             FillListFood();
             addMode = false;
             editMode = false;
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -40,7 +47,7 @@ namespace COID_System
 
         private void DetailFoods_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -247,6 +254,19 @@ namespace COID_System
             foodSelected.price = float.Parse(textBoxPrice.Text);
             foodSelected.categoryID = category.id;
             return foodSelected;
+        }
+
+        private void buttonCombo_Click(object sender, EventArgs e)
+        {
+            OnUserControlButtonClick();
+        }
+
+        private void OnUserControlButtonClick()
+        {
+            if (ComboClicked != null)
+            {
+                ComboClicked(this, EventArgs.Empty);
+            }
         }
     }
 }

@@ -47,6 +47,7 @@
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonCombo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -231,10 +232,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // buttonCombo
+            // 
+            this.buttonCombo.Location = new System.Drawing.Point(39, 506);
+            this.buttonCombo.Name = "buttonCombo";
+            this.buttonCombo.Size = new System.Drawing.Size(115, 33);
+            this.buttonCombo.TabIndex = 12;
+            this.buttonCombo.Text = "Show Combo";
+            this.buttonCombo.UseVisualStyleBackColor = true;
+            this.buttonCombo.Click += new System.EventHandler(this.buttonCombo_Click);
+            // 
             // DetailFoods
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonCombo);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.listBoxFood);
             this.Controls.Add(this.panel1);
@@ -268,5 +280,6 @@
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonCombo;
     }
 }
