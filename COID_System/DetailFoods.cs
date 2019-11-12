@@ -19,6 +19,7 @@ namespace COID_System
         private bool editMode { get; set; }
         private food foodSelected;
         public event EventHandler ComboClicked;
+        public event EventHandler CategoryClicked;
 
 
         public DetailFoods()
@@ -29,7 +30,7 @@ namespace COID_System
         }
 
 
-        public void NewForm()
+        public void loadForm()
         {
             FillListFood();
             addMode = false;
@@ -258,14 +259,19 @@ namespace COID_System
 
         private void buttonCombo_Click(object sender, EventArgs e)
         {
-            OnUserControlButtonClick();
-        }
-
-        private void OnUserControlButtonClick()
-        {
             if (ComboClicked != null)
             {
                 ComboClicked(this, EventArgs.Empty);
+            }
+        }
+
+        
+
+        private void buttonCategory_Click(object sender, EventArgs e)
+        {
+            if (CategoryClicked != null)
+            {
+                CategoryClicked(this, EventArgs.Empty);
             }
         }
     }

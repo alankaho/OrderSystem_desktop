@@ -26,5 +26,10 @@ namespace COID_System.Entity
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<food> foods { get; set; }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

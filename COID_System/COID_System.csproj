@@ -65,6 +65,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CategoryDetail.Designer.cs">
+      <DependentUpon>CategoryDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\DaoFoodCombo.cs" />
     <Compile Include="DAO\DaoCombo.cs" />
     <Compile Include="DAO\DaoFood.cs" />
@@ -186,6 +192,9 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CategoryDetail.resx">
+      <DependentUpon>CategoryDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>

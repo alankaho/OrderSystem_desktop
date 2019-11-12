@@ -31,6 +31,15 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.buttonFood = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonConfirm = new System.Windows.Forms.Button();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.labelSearch = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonRemoveFood = new System.Windows.Forms.Button();
+            this.buttonAddFood = new System.Windows.Forms.Button();
+            this.listBoxFood2 = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.listBoxFood1 = new System.Windows.Forms.ListBox();
             this.textBoxID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,21 +49,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
-            this.Lable3 = new System.Windows.Forms.Label();
-            this.comboBoxCategory = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonChangeImage = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.buttonAdd = new System.Windows.Forms.Button();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.buttonAddFood = new System.Windows.Forms.Button();
-            this.buttonRemoveFood = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxDiscount = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.buttonBack = new System.Windows.Forms.Button();
-            this.buttonConfirm = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -81,15 +81,17 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.textBoxDiscount);
             this.panel1.Controls.Add(this.buttonConfirm);
             this.panel1.Controls.Add(this.buttonBack);
-            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.labelSearch);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.buttonRemoveFood);
             this.panel1.Controls.Add(this.buttonAddFood);
-            this.panel1.Controls.Add(this.listBox3);
+            this.panel1.Controls.Add(this.listBoxFood2);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.listBox2);
+            this.panel1.Controls.Add(this.listBoxFood1);
             this.panel1.Controls.Add(this.textBoxID);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
@@ -99,19 +101,107 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBoxName);
             this.panel1.Controls.Add(this.textBoxPrice);
-            this.panel1.Controls.Add(this.Lable3);
-            this.panel1.Controls.Add(this.comboBoxCategory);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.buttonChangeImage);
             this.panel1.Location = new System.Drawing.Point(307, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(609, 524);
+            this.panel1.Size = new System.Drawing.Size(585, 524);
             this.panel1.TabIndex = 12;
+            // 
+            // buttonConfirm
+            // 
+            this.buttonConfirm.Location = new System.Drawing.Point(144, 475);
+            this.buttonConfirm.Name = "buttonConfirm";
+            this.buttonConfirm.Size = new System.Drawing.Size(86, 34);
+            this.buttonConfirm.TabIndex = 22;
+            this.buttonConfirm.Text = "Confirm";
+            this.buttonConfirm.UseVisualStyleBackColor = true;
+            this.buttonConfirm.Visible = false;
+            this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
+            // 
+            // buttonBack
+            // 
+            this.buttonBack.Location = new System.Drawing.Point(43, 475);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(86, 34);
+            this.buttonBack.TabIndex = 21;
+            this.buttonBack.Text = "Back";
+            this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Visible = false;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
+            // labelSearch
+            // 
+            this.labelSearch.AutoSize = true;
+            this.labelSearch.Location = new System.Drawing.Point(246, 480);
+            this.labelSearch.Name = "labelSearch";
+            this.labelSearch.Size = new System.Drawing.Size(93, 17);
+            this.labelSearch.TabIndex = 20;
+            this.labelSearch.Text = "Search Food:";
+            this.labelSearch.Visible = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(345, 475);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(194, 22);
+            this.textBox1.TabIndex = 19;
+            this.textBox1.Visible = false;
+            // 
+            // buttonRemoveFood
+            // 
+            this.buttonRemoveFood.Enabled = false;
+            this.buttonRemoveFood.Location = new System.Drawing.Point(294, 358);
+            this.buttonRemoveFood.Name = "buttonRemoveFood";
+            this.buttonRemoveFood.Size = new System.Drawing.Size(45, 34);
+            this.buttonRemoveFood.TabIndex = 18;
+            this.buttonRemoveFood.Text = ">>";
+            this.buttonRemoveFood.UseVisualStyleBackColor = true;
+            this.buttonRemoveFood.Visible = false;
+            // 
+            // buttonAddFood
+            // 
+            this.buttonAddFood.Enabled = false;
+            this.buttonAddFood.Location = new System.Drawing.Point(294, 418);
+            this.buttonAddFood.Name = "buttonAddFood";
+            this.buttonAddFood.Size = new System.Drawing.Size(45, 34);
+            this.buttonAddFood.TabIndex = 17;
+            this.buttonAddFood.Text = "<<";
+            this.buttonAddFood.UseVisualStyleBackColor = true;
+            this.buttonAddFood.Visible = false;
+            // 
+            // listBoxFood2
+            // 
+            this.listBoxFood2.FormattingEnabled = true;
+            this.listBoxFood2.ItemHeight = 16;
+            this.listBoxFood2.Location = new System.Drawing.Point(345, 342);
+            this.listBoxFood2.Name = "listBoxFood2";
+            this.listBoxFood2.Size = new System.Drawing.Size(194, 116);
+            this.listBoxFood2.TabIndex = 16;
+            this.listBoxFood2.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(34, 342);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 17);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Food:";
+            // 
+            // listBoxFood1
+            // 
+            this.listBoxFood1.FormattingEnabled = true;
+            this.listBoxFood1.ItemHeight = 16;
+            this.listBoxFood1.Location = new System.Drawing.Point(94, 342);
+            this.listBoxFood1.Name = "listBoxFood1";
+            this.listBoxFood1.Size = new System.Drawing.Size(194, 116);
+            this.listBoxFood1.TabIndex = 13;
             // 
             // textBoxID
             // 
-            this.textBoxID.Location = new System.Drawing.Point(94, 74);
+            this.textBoxID.Location = new System.Drawing.Point(94, 84);
             this.textBoxID.Name = "textBoxID";
             this.textBoxID.ReadOnly = true;
             this.textBoxID.Size = new System.Drawing.Size(83, 22);
@@ -120,7 +210,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(55, 74);
+            this.label4.Location = new System.Drawing.Point(61, 87);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(19, 17);
             this.label4.TabIndex = 13;
@@ -146,17 +236,16 @@
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Enabled = false;
             this.buttonEdit.Location = new System.Drawing.Point(310, 378);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(112, 34);
             this.buttonEdit.TabIndex = 10;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Enabled = false;
             this.buttonDelete.Location = new System.Drawing.Point(444, 378);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(112, 34);
@@ -167,7 +256,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 33);
+            this.label1.Location = new System.Drawing.Point(43, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 17);
             this.label1.TabIndex = 0;
@@ -175,7 +264,7 @@
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(94, 33);
+            this.textBoxName.Location = new System.Drawing.Point(94, 35);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.ReadOnly = true;
             this.textBoxName.Size = new System.Drawing.Size(403, 22);
@@ -183,35 +272,16 @@
             // 
             // textBoxPrice
             // 
-            this.textBoxPrice.Location = new System.Drawing.Point(94, 105);
+            this.textBoxPrice.Location = new System.Drawing.Point(94, 116);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.ReadOnly = true;
             this.textBoxPrice.Size = new System.Drawing.Size(136, 22);
             this.textBoxPrice.TabIndex = 3;
             // 
-            // Lable3
-            // 
-            this.Lable3.AutoSize = true;
-            this.Lable3.Location = new System.Drawing.Point(23, 144);
-            this.Lable3.Name = "Lable3";
-            this.Lable3.Size = new System.Drawing.Size(65, 17);
-            this.Lable3.TabIndex = 7;
-            this.Lable3.Text = "Category";
-            // 
-            // comboBoxCategory
-            // 
-            this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.ItemHeight = 16;
-            this.comboBoxCategory.Location = new System.Drawing.Point(94, 144);
-            this.comboBoxCategory.Name = "comboBoxCategory";
-            this.comboBoxCategory.Size = new System.Drawing.Size(194, 24);
-            this.comboBoxCategory.TabIndex = 8;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 105);
+            this.label2.Location = new System.Drawing.Point(40, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 17);
             this.label2.TabIndex = 1;
@@ -236,24 +306,6 @@
             this.buttonChangeImage.Text = "Change Image";
             this.buttonChangeImage.UseVisualStyleBackColor = true;
             // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 16;
-            this.listBox2.Location = new System.Drawing.Point(94, 342);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(194, 116);
-            this.listBox2.TabIndex = 13;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 342);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 17);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Food:";
-            // 
             // buttonAdd
             // 
             this.buttonAdd.Location = new System.Drawing.Point(159, 424);
@@ -262,71 +314,24 @@
             this.buttonAdd.TabIndex = 13;
             this.buttonAdd.Text = "Add new ";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
-            // listBox3
+            // textBoxDiscount
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 16;
-            this.listBox3.Location = new System.Drawing.Point(345, 342);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(194, 116);
-            this.listBox3.TabIndex = 16;
-            // 
-            // buttonAddFood
-            // 
-            this.buttonAddFood.Enabled = false;
-            this.buttonAddFood.Location = new System.Drawing.Point(294, 418);
-            this.buttonAddFood.Name = "buttonAddFood";
-            this.buttonAddFood.Size = new System.Drawing.Size(45, 34);
-            this.buttonAddFood.TabIndex = 17;
-            this.buttonAddFood.Text = "<<";
-            this.buttonAddFood.UseVisualStyleBackColor = true;
-            // 
-            // buttonRemoveFood
-            // 
-            this.buttonRemoveFood.Enabled = false;
-            this.buttonRemoveFood.Location = new System.Drawing.Point(294, 358);
-            this.buttonRemoveFood.Name = "buttonRemoveFood";
-            this.buttonRemoveFood.Size = new System.Drawing.Size(45, 34);
-            this.buttonRemoveFood.TabIndex = 18;
-            this.buttonRemoveFood.Text = ">>";
-            this.buttonRemoveFood.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(345, 475);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(194, 22);
-            this.textBox1.TabIndex = 19;
+            this.textBoxDiscount.Location = new System.Drawing.Point(94, 144);
+            this.textBoxDiscount.Name = "textBoxDiscount";
+            this.textBoxDiscount.ReadOnly = true;
+            this.textBoxDiscount.Size = new System.Drawing.Size(136, 22);
+            this.textBoxDiscount.TabIndex = 23;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(246, 480);
+            this.label6.Location = new System.Drawing.Point(25, 144);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 17);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "Search Food:";
-            // 
-            // buttonBack
-            // 
-            this.buttonBack.Enabled = false;
-            this.buttonBack.Location = new System.Drawing.Point(43, 475);
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(86, 34);
-            this.buttonBack.TabIndex = 21;
-            this.buttonBack.Text = "Back";
-            this.buttonBack.UseVisualStyleBackColor = true;
-            // 
-            // buttonConfirm
-            // 
-            this.buttonConfirm.Enabled = false;
-            this.buttonConfirm.Location = new System.Drawing.Point(144, 475);
-            this.buttonConfirm.Name = "buttonConfirm";
-            this.buttonConfirm.Size = new System.Drawing.Size(86, 34);
-            this.buttonConfirm.TabIndex = 22;
-            this.buttonConfirm.Text = "Confirm";
-            this.buttonConfirm.UseVisualStyleBackColor = true;
+            this.label6.Size = new System.Drawing.Size(63, 17);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Discount";
             // 
             // DetailCombo
             // 
@@ -359,20 +364,20 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxPrice;
-        private System.Windows.Forms.Label Lable3;
-        private System.Windows.Forms.ComboBox comboBoxCategory;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button buttonChangeImage;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBoxFood1;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonRemoveFood;
         private System.Windows.Forms.Button buttonAddFood;
-        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.ListBox listBoxFood2;
         private System.Windows.Forms.Button buttonConfirm;
         private System.Windows.Forms.Button buttonBack;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelSearch;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxDiscount;
     }
 }

@@ -41,6 +41,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.buttonAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.textBoxID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -156,6 +157,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.textBoxID);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
@@ -174,6 +176,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(524, 498);
             this.panel1.TabIndex = 11;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(26, 450);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(112, 28);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "Edit category";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.buttonCategory_Click);
             // 
             // textBoxID
             // 
@@ -195,7 +207,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 188);
+            this.label3.Location = new System.Drawing.Point(9, 209);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 17);
             this.label3.TabIndex = 12;
@@ -203,11 +215,11 @@
             // 
             // textBoxDescription
             // 
-            this.textBoxDescription.Location = new System.Drawing.Point(94, 188);
+            this.textBoxDescription.Location = new System.Drawing.Point(94, 209);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.ReadOnly = true;
-            this.textBoxDescription.Size = new System.Drawing.Size(194, 231);
+            this.textBoxDescription.Size = new System.Drawing.Size(194, 210);
             this.textBoxDescription.TabIndex = 11;
             // 
             // button2
@@ -281,5 +293,6 @@
         private System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonCombo;
+        private System.Windows.Forms.Button button3;
     }
 }

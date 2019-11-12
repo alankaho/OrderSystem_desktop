@@ -36,8 +36,9 @@
             this.buttonCustomerTab = new System.Windows.Forms.Button();
             this.buttonMenuPlanTab = new System.Windows.Forms.Button();
             this.entityConnection1 = new System.Data.Entity.Core.EntityClient.EntityConnection();
-            this.detailFoods1 = new COID_System.DetailFoods();
+            this.categoryDetail1 = new COID_System.CategoryDetail();
             this.detailCombo1 = new COID_System.DetailCombo();
+            this.detailFoods1 = new COID_System.DetailFoods();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,12 +126,13 @@
             this.buttonMenuPlanTab.UseVisualStyleBackColor = false;
             this.buttonMenuPlanTab.Click += new System.EventHandler(this.buttonMenuPlan_Click);
             // 
-            // detailFoods1
+            // categoryDetail1
             // 
-            this.detailFoods1.Location = new System.Drawing.Point(242, 21);
-            this.detailFoods1.Name = "detailFoods1";
-            this.detailFoods1.Size = new System.Drawing.Size(945, 571);
-            this.detailFoods1.TabIndex = 1;
+            this.categoryDetail1.Location = new System.Drawing.Point(599, 21);
+            this.categoryDetail1.Name = "categoryDetail1";
+            this.categoryDetail1.Size = new System.Drawing.Size(555, 571);
+            this.categoryDetail1.TabIndex = 3;
+            this.categoryDetail1.Visible = false;
             // 
             // detailCombo1
             // 
@@ -139,11 +141,19 @@
             this.detailCombo1.Size = new System.Drawing.Size(945, 571);
             this.detailCombo1.TabIndex = 2;
             // 
+            // detailFoods1
+            // 
+            this.detailFoods1.Location = new System.Drawing.Point(242, 21);
+            this.detailFoods1.Name = "detailFoods1";
+            this.detailFoods1.Size = new System.Drawing.Size(945, 571);
+            this.detailFoods1.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1256, 636);
+            this.Controls.Add(this.categoryDetail1);
             this.Controls.Add(this.detailCombo1);
             this.Controls.Add(this.detailFoods1);
             this.Controls.Add(this.panel1);
@@ -169,5 +179,6 @@
         private System.Data.Entity.Core.EntityClient.EntityConnection entityConnection1;
         private DetailFoods detailFoods1;
         private DetailCombo detailCombo1;
+        private CategoryDetail categoryDetail1;
     }
 }
