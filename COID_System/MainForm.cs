@@ -54,13 +54,13 @@ namespace COID_System
          
         }
 
-        public void ShowFoodTab(object sender, EventArgs e)
+         void ShowFoodTab(object sender, EventArgs e)
         {
             detailFoods1.Show();
             detailCombo1.Hide();
         }
 
-        public void ShowComboTab(object sender, EventArgs e)
+         void ShowComboTab(object sender, EventArgs e)
         {
             detailFoods1.Hide();
             detailCombo1.Show();
