@@ -95,6 +95,7 @@ namespace COID_System
                 comboBoxCategory.Items.Add(i.name);
             }
 
+
         }
 
 
