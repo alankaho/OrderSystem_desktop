@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ddfa99bc7fe042c58951874cd3a2c8d5" Name="Diagram1">
+        <EntityTypeShape EntityType="OrderSystemModel.balance" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.category" Width="1.5" PointX="10.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.combo" Width="1.5" PointX="13" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.food" Width="1.5" PointX="13" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.food_combo" Width="1.5" PointX="15.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.menu" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.menu_detail" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.order" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.order_detail" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.service_time" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.time_menu" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.transaction" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.user" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="OrderSystemModel.FK_UserBalance" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_FoodCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_ComboFood" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_FoodCombo" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_breakfast_mid" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_dinner_mid" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_lunch_mid" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_menu_creator" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_menu_detail" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_order_product" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_OrderTransaction" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_StaffOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_TakeTimeOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_UserOder" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_StaffTransaction" ManuallyRouted="false" />
+        <AssociationConnector Association="OrderSystemModel.FK_UserTransaction" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

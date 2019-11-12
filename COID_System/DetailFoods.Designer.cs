@@ -47,8 +47,6 @@
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.radioButtonFood = new System.Windows.Forms.RadioButton();
-            this.radioButtonCombo = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -233,34 +231,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // radioButtonFood
-            // 
-            this.radioButtonFood.AutoSize = true;
-            this.radioButtonFood.Checked = true;
-            this.radioButtonFood.Location = new System.Drawing.Point(582, 16);
-            this.radioButtonFood.Name = "radioButtonFood";
-            this.radioButtonFood.Size = new System.Drawing.Size(68, 21);
-            this.radioButtonFood.TabIndex = 12;
-            this.radioButtonFood.TabStop = true;
-            this.radioButtonFood.Text = "Foods";
-            this.radioButtonFood.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonCombo
-            // 
-            this.radioButtonCombo.AutoSize = true;
-            this.radioButtonCombo.Location = new System.Drawing.Point(739, 16);
-            this.radioButtonCombo.Name = "radioButtonCombo";
-            this.radioButtonCombo.Size = new System.Drawing.Size(80, 21);
-            this.radioButtonCombo.TabIndex = 13;
-            this.radioButtonCombo.Text = "Combos";
-            this.radioButtonCombo.UseVisualStyleBackColor = true;
-            // 
             // DetailFoods
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radioButtonCombo);
-            this.Controls.Add(this.radioButtonFood);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.listBoxFood);
             this.Controls.Add(this.panel1);
@@ -271,7 +245,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -291,8 +264,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton radioButtonFood;
-        private System.Windows.Forms.RadioButton radioButtonCombo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.TextBox textBoxID;

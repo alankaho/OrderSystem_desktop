@@ -170,12 +170,6 @@
     <Compile Include="QRScanner.Designer.cs">
       <DependentUpon>QRScanner.cs</DependentUpon>
     </Compile>
-    <Compile Include="FoodComboList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FoodComboList.Designer.cs">
-      <DependentUpon>FoodComboList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Register.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -214,9 +208,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QRScanner.resx">
       <DependentUpon>QRScanner.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FoodComboList.resx">
-      <DependentUpon>FoodComboList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
