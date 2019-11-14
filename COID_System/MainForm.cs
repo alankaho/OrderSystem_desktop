@@ -70,6 +70,7 @@ namespace COID_System
         {
             detailFoods1.Hide();
             detailCombo1.Show();
+            categoryDetail1.Hide();
         }
 
          void ShowCategoryTab(object sender, EventArgs e)
@@ -77,11 +78,18 @@ namespace COID_System
              categoryDetail1.Show();
              categoryDetail1.BringToFront();
              categoryDetail1.FillGrip();
+             detailFoods1.editModeOn();
          }
          void HideCategoryTab(object sender, EventArgs e)
          {
              categoryDetail1.Hide();
-             
+             detailFoods1.loadForm();
+             detailFoods1.offMode();
          }
+
+        private void buttonFoodCombo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

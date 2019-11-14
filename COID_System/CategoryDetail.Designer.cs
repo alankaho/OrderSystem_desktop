@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxID = new System.Windows.Forms.TextBox();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,28 +49,29 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(153, 244);
             this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // textBox1
+            // textBoxName
             // 
-            this.textBox1.Location = new System.Drawing.Point(284, 109);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 22);
-            this.textBox1.TabIndex = 1;
+            this.textBoxName.Location = new System.Drawing.Point(284, 109);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(175, 22);
+            this.textBoxName.TabIndex = 1;
             // 
-            // textBox2
+            // textBoxID
             // 
-            this.textBox2.Location = new System.Drawing.Point(284, 69);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(58, 22);
-            this.textBox2.TabIndex = 2;
+            this.textBoxID.Location = new System.Drawing.Point(284, 69);
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(58, 22);
+            this.textBoxID.TabIndex = 2;
             // 
-            // textBox3
+            // textBoxDescription
             // 
-            this.textBox3.Location = new System.Drawing.Point(26, 359);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(411, 113);
-            this.textBox3.TabIndex = 3;
+            this.textBoxDescription.Location = new System.Drawing.Point(26, 359);
+            this.textBoxDescription.Multiline = true;
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(411, 113);
+            this.textBoxDescription.TabIndex = 3;
             // 
             // label1
             // 
@@ -117,6 +118,7 @@
             this.buttonEdit.TabIndex = 8;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonDelete
             // 
@@ -127,6 +129,7 @@
             this.buttonDelete.TabIndex = 9;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonClose
             // 
@@ -149,9 +152,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxDescription);
+            this.Controls.Add(this.textBoxID);
+            this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.listBox1);
             this.Name = "CategoryDetail";
             this.Size = new System.Drawing.Size(481, 571);
@@ -163,9 +166,9 @@
         #endregion
 
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

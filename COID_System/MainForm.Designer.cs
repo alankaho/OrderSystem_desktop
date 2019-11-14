@@ -39,12 +39,14 @@
             this.categoryDetail1 = new COID_System.CategoryDetail();
             this.detailCombo1 = new COID_System.DetailCombo();
             this.detailFoods1 = new COID_System.DetailFoods();
+            this.buttonFoodCombo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.panel1.Controls.Add(this.buttonFoodCombo);
             this.panel1.Controls.Add(this.buttonExit);
             this.panel1.Controls.Add(this.buttonSetting);
             this.panel1.Controls.Add(this.buttonLogOut);
@@ -73,7 +75,7 @@
             // 
             this.buttonSetting.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.buttonSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSetting.Location = new System.Drawing.Point(12, 218);
+            this.buttonSetting.Location = new System.Drawing.Point(12, 276);
             this.buttonSetting.Name = "buttonSetting";
             this.buttonSetting.Size = new System.Drawing.Size(178, 36);
             this.buttonSetting.TabIndex = 4;
@@ -84,7 +86,7 @@
             // 
             this.buttonLogOut.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.buttonLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLogOut.Location = new System.Drawing.Point(12, 285);
+            this.buttonLogOut.Location = new System.Drawing.Point(12, 329);
             this.buttonLogOut.Name = "buttonLogOut";
             this.buttonLogOut.Size = new System.Drawing.Size(178, 36);
             this.buttonLogOut.TabIndex = 3;
@@ -95,7 +97,7 @@
             // 
             this.buttonEmployee.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.buttonEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEmployee.Location = new System.Drawing.Point(12, 159);
+            this.buttonEmployee.Location = new System.Drawing.Point(12, 223);
             this.buttonEmployee.Name = "buttonEmployee";
             this.buttonEmployee.Size = new System.Drawing.Size(178, 36);
             this.buttonEmployee.TabIndex = 2;
@@ -106,7 +108,7 @@
             // 
             this.buttonCustomerTab.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.buttonCustomerTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCustomerTab.Location = new System.Drawing.Point(12, 91);
+            this.buttonCustomerTab.Location = new System.Drawing.Point(12, 166);
             this.buttonCustomerTab.Name = "buttonCustomerTab";
             this.buttonCustomerTab.Size = new System.Drawing.Size(178, 36);
             this.buttonCustomerTab.TabIndex = 1;
@@ -148,6 +150,18 @@
             this.detailFoods1.Size = new System.Drawing.Size(945, 571);
             this.detailFoods1.TabIndex = 1;
             // 
+            // buttonFoodCombo
+            // 
+            this.buttonFoodCombo.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.buttonFoodCombo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFoodCombo.Location = new System.Drawing.Point(12, 92);
+            this.buttonFoodCombo.Name = "buttonFoodCombo";
+            this.buttonFoodCombo.Size = new System.Drawing.Size(178, 36);
+            this.buttonFoodCombo.TabIndex = 6;
+            this.buttonFoodCombo.Text = "Food/Combo";
+            this.buttonFoodCombo.UseVisualStyleBackColor = false;
+            this.buttonFoodCombo.Click += new System.EventHandler(this.buttonFoodCombo_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -180,5 +194,6 @@
         private DetailFoods detailFoods1;
         private DetailCombo detailCombo1;
         private CategoryDetail categoryDetail1;
+        private System.Windows.Forms.Button buttonFoodCombo;
     }
 }

@@ -83,6 +83,7 @@ namespace COID_System
         void FillListFood()
         {
             listBoxFood.Items.Clear();
+            comboBoxCategory.Items.Clear();
             db = new OrderSystemEntities();
             foreach (var i in db.foods)
             {
@@ -95,6 +96,7 @@ namespace COID_System
                 comboBoxCategory.Items.Add(i.name);
             }
 
+            listBoxFood.Enabled = true;
 
         }
 
@@ -201,7 +203,7 @@ namespace COID_System
             return;
         }
 
-        void editModeOn()
+        public void editModeOn()
         {
            
             {
@@ -221,12 +223,30 @@ namespace COID_System
 
         }
 
-        void editModeOff()
+        public void categoryMode()
         {
-            editMode = false;
+
+            {
+                buttonCombo.Enabled = false;
+                textBoxName.ReadOnly = false;
+                textBoxDescription.ReadOnly = false;
+                textBoxPrice.ReadOnly = false;
+                textBoxID.ReadOnly = false;
+                // comboBoxCategory.Enabled = true;
+                buttonAdd.Enabled = false;
+                editMode = true;
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button1.Text = "Cancel";
+                button2.Text = "Confirm";
+                listBoxFood.Enabled = false;
+            }
+
         }
 
-        private void offMode()
+
+
+        public void offMode()
         {
             textBoxName.ReadOnly = true;
             textBoxDescription.ReadOnly = true;
@@ -264,6 +284,7 @@ namespace COID_System
             {
                 ComboClicked(this, EventArgs.Empty);
             }
+
         }
 
         

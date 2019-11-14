@@ -52,7 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(495, 286);
+            this.label2.Location = new System.Drawing.Point(253, 150);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 2;
@@ -66,7 +66,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Name = "DetailCustomer";
-            this.Size = new System.Drawing.Size(1020, 593);
+            this.Size = new System.Drawing.Size(945, 571);
             this.ResumeLayout(false);
             this.PerformLayout();
 
