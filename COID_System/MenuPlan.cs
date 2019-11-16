@@ -19,7 +19,7 @@ namespace COID_System
 
         public void loadform()
         {
-
+            
         }
     }
 }
