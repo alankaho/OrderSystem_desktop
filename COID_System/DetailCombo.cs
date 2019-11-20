@@ -7,16 +7,18 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using COID_System.Entity;
 
 namespace COID_System
 {
-    public partial class DetailCombo : UserControl
+    public partial class DetailCombo : Form
     {
         public DetailCombo()
         {
             InitializeComponent();
+            FillForm();
         }
 
         private ArrayList listFood1;
@@ -37,14 +39,7 @@ namespace COID_System
         }
 
 
-        void fillCombo()
-        {
-            OrderSystemEntities db = new OrderSystemEntities();
-            foreach (var i in db.comboes)
-            {
-                listBox1.Items.Add(i);
-            }
-        }
+       
 
         public void FillArray(string comboID)
         {
@@ -56,7 +51,7 @@ namespace COID_System
 
             //var foodList = db.foods.Where(p => p.name.Contains(index));
 
-//get all food joined with combo
+            //get all food joined with combo
             var foodjoined = db.food_combo.Where(x => x.comboID == comboID);
             foreach (var i in foodjoined)
             {
@@ -66,7 +61,10 @@ namespace COID_System
             var subselect = (from b in db.food_combo select b.food.name).ToList();
 
             var result = from c in db.foods where !subselect.Contains(c.name) select c;
-
+            foreach (var i in result)
+            {
+                listFood2.Add(i.id);
+            }
 
         }
 
@@ -83,61 +81,68 @@ namespace COID_System
             }
         }
 
-        public void ShowFoodList()
+        public void FillForm()
         {
-            listBoxFood2.Items.Clear();
-            listBoxFood1.Items.Clear();
-            foreach (food_combo i in listFood1)
+            //fill food checklist
+            checkedListBox1.Items.Clear();
+            OrderSystemEntities db = new OrderSystemEntities();
+
+            foreach (food i in db.foods)
             {
-                listBoxFood1.Items.Add(i);
+                checkedListBox1.Items.Add(i);
             }
+            //foreach (food_combo item in db.food_combo)
+            //{
+            //    int index = checkedListBox1.Items.IndexOf(item.foodID);
 
+            //    if (index >= 0)
+            //    {
+            //        checkedListBox1.SetItemChecked(index, true);
+            //    }
+            //}
 
-            foreach (food_combo i in listFood2)
+            //fill combo
+            foreach (var i in db.comboes)
             {
-                listBoxFood2.Items.Add(i);
+                listBoxCombo.Items.Add(i);
             }
         }
 
 
         private void AddEditModeOn(bool addMode)
         {
-            buttonAddFood.Visible = true;
-            buttonRemoveFood.Visible = true;
             buttonConfirm.Visible = true;
             buttonEdit.Visible = false;
             buttonDelete.Visible = false;
             buttonBack.Visible = true;
-            listBoxFood2.Visible = true;
+            
             if (addMode)
             {
                 buttonConfirm.Text = "Add";
-                FillArray();
-                ShowFoodList();
+                
+                FillForm();
             }
             else
             {
                 string temp = "";
-                FillArray(temp);
-                ShowFoodList();
+                
+                FillForm();
             }
 
-            listBox1.Enabled = false;
+            listBoxCombo.Enabled = false;
             labelSearch.Visible = true;
             textBoxSearch.Visible = true;
         }
 
         private void AddEditModeOff()
         {
-            buttonAddFood.Visible = false;
-            buttonRemoveFood.Visible = false;
             buttonConfirm.Visible = false;
             buttonEdit.Visible = true;
             buttonDelete.Visible = true;
             buttonBack.Visible = false;
-            listBoxFood2.Visible = false;
+           
             if (buttonConfirm.Text.Equals("Add")) buttonConfirm.Text = "Confirm";
-            listBox1.Enabled = true;
+            listBoxCombo.Enabled = true;
             labelSearch.Visible = false;
             textBoxSearch.Visible = false;
         }
@@ -145,6 +150,7 @@ namespace COID_System
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             AddEditModeOn(true);
+           
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
@@ -162,10 +168,12 @@ namespace COID_System
             //add function
             if (buttonConfirm.Text.Equals("Add"))
             {
+
             }
             //edit function
             else
             {
+
             }
         }
 
@@ -193,21 +201,47 @@ namespace COID_System
             FillArray();
         }
 
-        private void listBoxFood2_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBoxFood2.SelectedIndex > -1)
+            checkedListBox1.ClearSelected();
+            if (listBoxCombo.SelectedIndex > -1)
             {
-                food_combo foodSelected = (food_combo) listBoxFood2.SelectedItem;
-                buttonAddFood.Enabled = true;
-            }
-        }
+                combo selectedCombo = new combo();
+                selectedCombo = (combo)listBoxCombo.SelectedItem;
+               
 
-        private void listBoxFood1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxFood1.SelectedIndex > -1)
-            {
-                food_combo foodSelected = (food_combo) listBoxFood1.SelectedItem;
-                buttonRemoveFood.Enabled = true;
+                using (OrderSystemEntities db = new OrderSystemEntities())
+                {
+
+
+                    selectedCombo = db.comboes.FirstOrDefault(x => x.id == selectedCombo.id);
+                    if (selectedCombo == null)
+                    {
+                        MessageBox.Show("Error");
+                        return;
+                    }
+                    textBoxName.Text = selectedCombo.name;
+                    textBoxPrice.Text = selectedCombo.price.ToString();
+                    textBoxDescription.Text = selectedCombo.description;
+                    textBoxID.Text = selectedCombo.id;
+                    textBoxDiscount.Text = selectedCombo.discount_price.ToString();
+
+                    //set food selected
+                    
+                    var foodcombo = db.food_combo.Where(r => r.comboID == selectedCombo.id);
+                    foreach (food_combo fc in foodcombo)
+                    {
+                        
+                        for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                        {
+                            if (fc.food.name == checkedListBox1.Items[i].ToString())
+                            {
+                                checkedListBox1.SetItemChecked(i, true);
+                            }
+                        }
+                    }
+
+                }
             }
         }
     }
