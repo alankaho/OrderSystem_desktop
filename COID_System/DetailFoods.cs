@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
+﻿using COID_System.Entity;
+using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using COID_System.Entity;
 
 namespace COID_System
 {
@@ -211,7 +205,7 @@ namespace COID_System
                 textBoxDescription.ReadOnly = false;
                 textBoxPrice.ReadOnly = false;
                 textBoxID.ReadOnly = false;
-                // comboBoxCategory.Enabled = true;
+              
                 buttonAdd.Enabled = false;
                 editMode = true;
                 button1.Enabled = true;
@@ -232,7 +226,7 @@ namespace COID_System
                 textBoxDescription.ReadOnly = false;
                 textBoxPrice.ReadOnly = false;
                 textBoxID.ReadOnly = false;
-                // comboBoxCategory.Enabled = true;
+               
                 buttonAdd.Enabled = false;
                 editMode = true;
                 button1.Enabled = true;
@@ -252,7 +246,7 @@ namespace COID_System
             textBoxDescription.ReadOnly = true;
             textBoxPrice.ReadOnly = true;
             textBoxID.ReadOnly = true;
-            // comboBoxCategory.Enabled = true;
+           
             textBoxName.Text = textBoxDescription.Text = textBoxPrice.Text = textBoxID.Text = comboBoxCategory.Text= "";
             listBoxFood.Enabled = true;
             addMode = false;

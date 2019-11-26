@@ -106,24 +106,37 @@ namespace COID_System
         }
 
 
-        private void AddEditModeOn(bool addMode)
+        private void AddEditModeOn(bool addMode1)
         {
-            if (addMode)
+            
+            if (addMode1)
             {
-                
-                
-                FillForm();
+                addMode = true;
+
+                textBoxDiscount.Text = textBoxName.Text = textBoxDescription.Text = textBoxPrice.Text = textBoxID.Text = textBoxDiscount.Text = "";
+                button2.Text = "Add";
+                button1.Text = "Back";
+
+
             }
             else
             {
-                string temp = "";
-                
-                FillForm();
+                editMode = true;
+                button2.Text = "Confirm";
+                button1.Text = "Back";
             }
 
+            buttonAdd.Enabled = false;
+            textBoxName.ReadOnly = false;
+            textBoxDescription.ReadOnly = false;
+            textBoxPrice.ReadOnly = false;
+            textBoxID.ReadOnly = false;
+            textBoxDiscount.ReadOnly = false;
             listBoxCombo.Enabled = false;
             labelSearch.Visible = true;
             textBoxSearch.Visible = true;
+            buttonSearch.Visible = true;
+            checkedListBox1.Enabled = true;
         }
 
        
@@ -139,11 +152,7 @@ namespace COID_System
             AddEditModeOn(false);
         }
 
-        private void buttonBack_Click(object sender, EventArgs e)
-        {
-            offMode();
-        }
-
+      
         //button to delete + cancel add/edit
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -155,13 +164,13 @@ namespace COID_System
             {
                 if (MessageBox.Show("Are You Sure to Delete this Record ?", "EF CRUD Operation", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    combo comboSelected = ParseInputToCombo();
+                    combo combo = ParseInputToCombo();
                     using (OrderSystemEntities db = new OrderSystemEntities())
                     {
-                        var entry = db.Entry(comboSelected);
+                        var entry = db.Entry(combo);
                         if (entry.State == EntityState.Detached)
-                            db.comboes.Attach(comboSelected);
-                        db.comboes.Remove(comboSelected);
+                            db.comboes.Attach(combo);
+                        db.comboes.Remove(combo);
                         db.SaveChanges();
                         FillForm();
                         offMode();
@@ -170,19 +179,19 @@ namespace COID_System
                     }
                 }
             }
-
         }
 
         //confirm button + edit button
         private void button2_Click(object sender, EventArgs e)
         {
+            //add
             if (addMode == true)
             {
-                combo comboSelected = ParseInputToCombo();
+                combo combo = ParseInputToCombo();
                 using (OrderSystemEntities db = new OrderSystemEntities())
                 {
 
-                    db.comboes.Add(comboSelected);
+                    db.comboes.Add(combo);
 
                     db.SaveChanges();
                 }
@@ -192,18 +201,20 @@ namespace COID_System
                 return;
             }
 
+            //edit mode
             if (editMode == false)
             {
                 AddEditModeOn(false);
             }
             else
             {
-                combo comboSelected = ParseInputToCombo();
-
+                combo combo = ParseInputToCombo();
+                
                 using (OrderSystemEntities db = new OrderSystemEntities())
                 {
-
-                    db.Entry(comboSelected).State = EntityState.Modified;
+                    combo combo1 = db.comboes.FirstOrDefault(x => x.id == combo.id);
+                   
+                    db.Entry(combo).State = EntityState.Modified;
 
                     db.SaveChanges();
                 }
@@ -215,48 +226,28 @@ namespace COID_System
             return;
         }
 
-        private void buttonConfirm_Click(object sender, EventArgs e)
-        {
-            //add function
-            if (button1.Text.Equals("Add"))
-            {
-                combo temp = ParseInputToCombo();
-                using (OrderSystemEntities db = new OrderSystemEntities())
-                {
-
-                    db.comboes.Add(temp);
-
-                    db.SaveChanges();
-                }
-                offMode();
-                FillForm();
-                MessageBox.Show("done!");
-                return;
-            }
-            //edit function
-            else
-            {
-
-            }
-        }
-
         public void offMode()
         {
             textBoxName.ReadOnly = true;
             textBoxDescription.ReadOnly = true;
             textBoxPrice.ReadOnly = true;
             textBoxID.ReadOnly = true;
-           
+            textBoxDiscount.ReadOnly = true;
             textBoxName.Text = textBoxDescription.Text = textBoxPrice.Text = textBoxID.Text = textBoxDiscount.Text = "";
             
             addMode = false;
             editMode = false;
             button2.Text = "Edit";
             button1.Text = "Delete";
-
-            button1.Enabled = false;
-            button2.Enabled = false;
+            listBoxCombo.Enabled = true;
+            button2.Enabled = true;
+            button1.Enabled = true;
             buttonAdd.Enabled = true;
+            buttonSearch.Visible = false;
+            labelSearch.Visible = false;
+            textBoxSearch.Visible = false;
+            textBoxSearch.Text = "";
+            checkedListBox1.Enabled = false;
         }
 
         private combo ParseInputToCombo()
@@ -268,17 +259,9 @@ namespace COID_System
             comboTemp.description = textBoxDescription.Text.Trim();
             comboTemp.price = float.Parse(textBoxPrice.Text);
             comboTemp.discount_price = float.Parse(textBoxDiscount.Text);
-
+            comboTemp.create_time = DateTime.Now;
+            
             return comboTemp;
-        }
-
-        private void buttonRemoveFood_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void buttonAddFood_Click(object sender, EventArgs e)
-        {
-           
         }
 
         private void listBoxCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -340,5 +323,7 @@ namespace COID_System
         {
 
         }
+
+        
     }
 }

@@ -31,6 +31,7 @@
             this.listBoxCombo = new System.Windows.Forms.ListBox();
             this.buttonFood = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonSearch = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxDiscount = new System.Windows.Forms.TextBox();
@@ -41,8 +42,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
@@ -50,7 +51,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonChangeImage = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -89,8 +89,8 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBoxDescription);
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBoxName);
             this.panel1.Controls.Add(this.textBoxPrice);
@@ -101,6 +101,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(585, 524);
             this.panel1.TabIndex = 12;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(332, 466);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(112, 34);
+            this.buttonSearch.TabIndex = 26;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Visible = false;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // checkedListBox1
             // 
@@ -189,24 +200,25 @@
             this.textBoxDescription.Size = new System.Drawing.Size(194, 99);
             this.textBoxDescription.TabIndex = 11;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(304, 343);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 34);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Edit";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonEdit_Click);
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(438, 343);
+            this.button2.Location = new System.Drawing.Point(304, 343);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(112, 34);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Delete";
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Edit";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(438, 343);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 34);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Delete";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // label1
             // 
@@ -271,16 +283,6 @@
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(332, 466);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(112, 34);
-            this.buttonSearch.TabIndex = 26;
-            this.buttonSearch.Text = "Search";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
             // DetailCombo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -307,8 +309,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxDescription;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxPrice;
