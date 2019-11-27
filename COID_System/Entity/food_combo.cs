@@ -14,6 +14,17 @@ namespace COID_System.Entity
     
     public partial class food_combo
     {
+        public food_combo()
+        {
+
+        }
+
+         public food_combo(string foodId, string comboId,double price_)
+        {
+            foodID= foodId ;
+            comboID=comboId  ;
+            price = price_;
+        }
         public string foodID { get; set; }
         public string comboID { get; set; }
         public double price { get; set; }

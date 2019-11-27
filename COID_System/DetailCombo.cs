@@ -192,13 +192,22 @@ namespace COID_System
                 {
 
                     db.comboes.Add(combo);
-
                     db.SaveChanges();
+                    foreach (food foodname in checkedListBox1.CheckedItems)
+                    {
+
+                        food_combo foodcombo = new food_combo(foodname.id,combo.id,combo.price);
+                        db.food_combo.Add(foodcombo);
+                        db.SaveChanges();
+                    }
+                    
                 }
+
                 offMode();
                 FillForm();
                 MessageBox.Show("done!");
                 return;
+
             }
 
             //edit mode
