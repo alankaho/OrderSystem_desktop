@@ -14,15 +14,11 @@ using COID_System.Entity;
 
 namespace COID_System
 {
-    public partial class DetailCombo : Form
+    public partial class DetailCombo : UserControl
     {
         public DetailCombo()
         {
             InitializeComponent();
-            FillForm();
-            listFoodCombo = new ArrayList();
-            listFoodEdited = new ArrayList();
-
         }
 
         private ArrayList listFoodCombo;
@@ -44,10 +40,15 @@ namespace COID_System
         }
 
 
-       
 
-       
-        
+
+
+        public void start()
+        {
+            FillForm();
+            listFoodCombo = new ArrayList();
+            listFoodEdited = new ArrayList();
+        }
 
         
 

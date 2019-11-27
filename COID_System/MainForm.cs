@@ -48,7 +48,7 @@ namespace COID_System
             categoryDetail1.hideClicked += new EventHandler(HideCategoryTab);
             detailCombo1.FoodClicked += new
                 EventHandler(ShowFoodTab);
-
+            detailCombo1.start();
             
         }
 
