@@ -344,11 +344,42 @@ namespace COID_System
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            OrderSystemEntities db = new OrderSystemEntities();
+            checkedListBox1.Items.Clear();
+            string searchText = textBoxSearch.Text;
+            var matches = from m in db.foods
+                where m.name.Contains(searchText)
+                select m;
+            foreach (food match in matches)
+            {
+                checkedListBox1.Items.Add(match);
+            }
 
+            if (editMode)
+            {
+                combo selectedCombo = (combo)listBoxCombo.SelectedItem;
+                selectedCombo = db.comboes.FirstOrDefault(x => x.id == selectedCombo.id);
+                var foodcombo = db.food_combo.Where(r => r.comboID == selectedCombo.id);
+                foreach (food_combo fc in foodcombo)
+                {
+
+                    for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                    {
+                        if (fc.food.name == checkedListBox1.Items[i].ToString())
+                        {
+                            checkedListBox1.SetItemChecked(i, true);
+                            listFoodCombo.Add(fc.food.name);
+                            break;
+                        }
+                    }
+                }
+            }
+           
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
 
         }
     }

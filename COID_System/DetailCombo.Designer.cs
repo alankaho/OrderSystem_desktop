@@ -115,6 +115,7 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.Enabled = false;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(94, 310);
             this.checkedListBox1.Name = "checkedListBox1";
