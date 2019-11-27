@@ -20,12 +20,14 @@ namespace COID_System
         {
             InitializeComponent();
             FillForm();
+            listFoodCombo = new ArrayList();
+            listFoodEdited = new ArrayList();
+
         }
 
-        private ArrayList listFood1;
-        private ArrayList listFood2;
-        private Array addFood;
-        private Array removeFood;
+        private ArrayList listFoodCombo;
+        private ArrayList listFoodEdited;
+        
         public event EventHandler FoodClicked;
         private combo comboTemp;
         private string comboSelected;
@@ -44,45 +46,10 @@ namespace COID_System
 
        
 
-        public void FillArray(string comboID)
-        {
-            OrderSystemEntities db = new OrderSystemEntities();
-            //get all food joined with combo
-            listFood1 = new ArrayList();
-            listFood2 = new ArrayList();
+       
+        
 
-
-            //var foodList = db.foods.Where(p => p.name.Contains(index));
-
-            //get all food joined with combo
-            var foodjoined = db.food_combo.Where(x => x.comboID == comboID);
-            foreach (var i in foodjoined)
-            {
-                listFood1.Add(i.foodID);
-            }
-            // get all food not joined with combo
-            var subselect = (from b in db.food_combo select b.food.name).ToList();
-
-            var result = from c in db.foods where !subselect.Contains(c.name) select c;
-            foreach (var i in result)
-            {
-                listFood2.Add(i.id);
-            }
-
-        }
-
-        public void FillArray()
-        {
-            listFood1 = new ArrayList();
-            listFood2 = new ArrayList();
-            OrderSystemEntities db = new OrderSystemEntities();
-
-            var foodList = db.foods;
-            foreach (var i in foodList)
-            {
-                listFood2.Add(i.id);
-            }
-        }
+        
 
         public void FillForm()
         {
@@ -217,16 +184,60 @@ namespace COID_System
             }
             else
             {
-                combo combo = ParseInputToCombo();
+                //edit combo
                 
-                using (OrderSystemEntities db = new OrderSystemEntities())
-                {
-                    combo combo1 = db.comboes.FirstOrDefault(x => x.id == combo.id);
-                   
-                    db.Entry(combo).State = EntityState.Modified;
+                OrderSystemEntities db = new OrderSystemEntities();
 
-                    db.SaveChanges();
+                combo combo = ParseInputToCombo();
+                db.Entry(combo).State = EntityState.Modified;
+                db.SaveChanges();
+                
+                
+
+
+                //edit foodcombo
+                listFoodEdited.Clear();
+                foreach (food item in checkedListBox1.CheckedItems)
+                {
+                    
+                    listFoodEdited.Add(item.name);
                 }
+
+                int acount=0;
+                int dcount = 0;
+                //var foodList = db.foods.Where(p => p.name.Contains(index));
+                //if listFoodEdited not in listFoodCombo -> add
+                foreach (string foodname in listFoodEdited)
+                {
+                    if (!listFoodCombo.Contains(foodname))
+                    {
+                        acount = acount+1;
+                        food food = db.foods.FirstOrDefault(x => x.name == foodname);
+                             
+                        food_combo foodcombo = new food_combo(food.id, combo.id, combo.price);
+                         db.food_combo.Add(foodcombo);
+                          db.SaveChanges();
+                    }
+                }
+
+                MessageBox.Show("added "+acount+" food(s)=");
+
+                //if listFoodCombo not in listFoodEdited -> delete
+                foreach (string foodname in listFoodCombo)
+                {
+                    if (!listFoodEdited.Contains(foodname))
+                    {
+                        food food = db.foods.FirstOrDefault(x => x.name == foodname);
+                        food_combo foodcombo = new food_combo(food.id, combo.id, combo.price);
+                        var entry = db.Entry(foodcombo);
+                        if (entry.State == EntityState.Detached)
+                            db.food_combo.Attach(foodcombo);
+                        db.food_combo.Remove(foodcombo);
+                        db.SaveChanges();
+                        dcount++;
+                    }
+                }
+                MessageBox.Show("deleted " + dcount + " foods=");
                 offMode();
                 FillForm();
                 MessageBox.Show("done!");
@@ -275,6 +286,7 @@ namespace COID_System
 
         private void listBoxCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            listFoodCombo.Clear();
             //deselected all food
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
@@ -288,6 +300,7 @@ namespace COID_System
             {
                 combo selectedCombo = new combo();
                 selectedCombo = (combo)listBoxCombo.SelectedItem;
+                
                
 
                 using (OrderSystemEntities db = new OrderSystemEntities())
@@ -317,6 +330,7 @@ namespace COID_System
                             if (fc.food.name == checkedListBox1.Items[i].ToString())
                             {
                                 checkedListBox1.SetItemChecked(i, true);
+                                listFoodCombo.Add(fc.food.name);
                                 break;
                             }
                         }
@@ -333,6 +347,9 @@ namespace COID_System
 
         }
 
-        
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
