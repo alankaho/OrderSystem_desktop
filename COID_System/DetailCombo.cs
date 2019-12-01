@@ -135,6 +135,26 @@ namespace COID_System
                     combo combo = ParseInputToCombo();
                     using (OrderSystemEntities db = new OrderSystemEntities())
                     {
+                        //delete foodcombo
+                        foreach (string foodname in listFoodCombo)
+                        {
+                            food food = db.foods.FirstOrDefault(x => x.name == foodname);
+                                food_combo foodcombo = new food_combo(food.id, combo.id, combo.price);
+                                var entry1 = db.Entry(foodcombo);
+                                if (entry1.State == EntityState.Detached)
+                                    db.food_combo.Attach(foodcombo);
+                                db.food_combo.Remove(foodcombo);
+                                db.SaveChanges();
+                                
+                            
+                        }
+
+
+
+
+
+                        //delete combo
+
                         var entry = db.Entry(combo);
                         if (entry.State == EntityState.Detached)
                             db.comboes.Attach(combo);
