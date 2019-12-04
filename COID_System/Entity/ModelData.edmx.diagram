@@ -34,6 +34,7 @@
         <AssociationConnector Association="OrderSystemModel.FK_UserOder" ManuallyRouted="false" />
         <AssociationConnector Association="OrderSystemModel.FK_StaffTransaction" ManuallyRouted="false" />
         <AssociationConnector Association="OrderSystemModel.FK_UserTransaction" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OrderSystemModel.index_table" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

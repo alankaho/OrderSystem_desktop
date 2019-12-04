@@ -115,10 +115,7 @@ namespace COID_System
             
         }
 
-        private void buttonEdit_Click(object sender, EventArgs e)
-        {
-            AddEditModeOn(false);
-        }
+      
 
       
         //button to delete + cancel add/edit
@@ -139,8 +136,11 @@ namespace COID_System
                         foreach (string foodname in listFoodCombo)
                         {
                             food food = db.foods.FirstOrDefault(x => x.name == foodname);
-                                food_combo foodcombo = new food_combo(food.id, combo.id, combo.price);
-                                var entry1 = db.Entry(foodcombo);
+                            food_combo foodcombo = new food_combo();
+                            foodcombo.foodID = food.id;
+                            foodcombo.comboID = combo.id;
+                            foodcombo.price = combo.price;
+                            var entry1 = db.Entry(foodcombo);
                                 if (entry1.State == EntityState.Detached)
                                     db.food_combo.Attach(foodcombo);
                                 db.food_combo.Remove(foodcombo);
@@ -184,7 +184,10 @@ namespace COID_System
                     foreach (food foodname in checkedListBox1.CheckedItems)
                     {
 
-                        food_combo foodcombo = new food_combo(foodname.id,combo.id,combo.price);
+                        food_combo foodcombo = new food_combo();
+                        foodcombo.foodID = foodname.id;
+                        foodcombo.comboID = combo.id;
+                        foodcombo.price = combo.price;
                         db.food_combo.Add(foodcombo);
                         db.SaveChanges();
                     }
@@ -235,7 +238,10 @@ namespace COID_System
                         acount = acount+1;
                         food food = db.foods.FirstOrDefault(x => x.name == foodname);
                              
-                        food_combo foodcombo = new food_combo(food.id, combo.id, combo.price);
+                        food_combo foodcombo = new food_combo();
+                        foodcombo.foodID = food.id;
+                        foodcombo.comboID = combo.id;
+                        foodcombo.price = combo.price;
                          db.food_combo.Add(foodcombo);
                           db.SaveChanges();
                     }
@@ -249,7 +255,10 @@ namespace COID_System
                     if (!listFoodEdited.Contains(foodname))
                     {
                         food food = db.foods.FirstOrDefault(x => x.name == foodname);
-                        food_combo foodcombo = new food_combo(food.id, combo.id, combo.price);
+                        food_combo foodcombo = new food_combo();
+                        foodcombo.foodID = food.id;
+                        foodcombo.comboID = combo.id;
+                        foodcombo.price = combo.price;
                         var entry = db.Entry(foodcombo);
                         if (entry.State == EntityState.Detached)
                             db.food_combo.Attach(foodcombo);
