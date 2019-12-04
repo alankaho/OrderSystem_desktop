@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OrderSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="OrderSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="balance">
           <Key>
             <PropertyRef Name="userID" />
@@ -339,6 +339,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_add_record_balance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_check_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="char" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_check_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_get_last_index" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_update_balance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="char" Mode="In" />
+          <Parameter Name="amount" Type="float" Mode="In" />
+        </Function>
         <EntityContainer Name="OrderSystemModelStoreContainer">
           <EntitySet Name="balance" EntityType="Self.balance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
@@ -419,7 +436,8 @@
             <End Role="transaction" EntitySet="transaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OrderSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -450,8 +468,8 @@
           <Property Name="price" Type="Double" Nullable="false" />
           <Property Name="discount_price" Type="Double" Nullable="false" />
           <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="food_combo" Relationship="Self.FK_ComboFood" FromRole="combo" ToRole="food_combo" />
           <Property Name="disable" Type="Boolean" />
+          <NavigationProperty Name="food_combo" Relationship="Self.FK_ComboFood" FromRole="combo" ToRole="food_combo" />
         </EntityType>
         <EntityType Name="food">
           <Key>
@@ -462,9 +480,9 @@
           <Property Name="categoryID" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="disable" Type="Boolean" />
           <NavigationProperty Name="category" Relationship="Self.FK_FoodCategory" FromRole="food" ToRole="category" />
           <NavigationProperty Name="food_combo" Relationship="Self.FK_FoodCombo" FromRole="food" ToRole="food_combo" />
-          <Property Name="disable" Type="Boolean" />
         </EntityType>
         <EntityType Name="food_combo">
           <Key>
@@ -477,6 +495,13 @@
           <NavigationProperty Name="combo" Relationship="Self.FK_ComboFood" FromRole="food_combo" ToRole="combo" />
           <NavigationProperty Name="food" Relationship="Self.FK_FoodCombo" FromRole="food_combo" ToRole="food" />
         </EntityType>
+        <EntityType Name="index_table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="menu">
           <Key>
             <PropertyRef Name="id" />
@@ -484,12 +509,12 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="date_create" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="creator" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="time_menu" Relationship="Self.FK_breakfast_mid" FromRole="menu" ToRole="time_menu" />
           <NavigationProperty Name="time_menu1" Relationship="Self.FK_dinner_mid" FromRole="menu" ToRole="time_menu" />
           <NavigationProperty Name="time_menu2" Relationship="Self.FK_lunch_mid" FromRole="menu" ToRole="time_menu" />
           <NavigationProperty Name="user" Relationship="Self.FK_menu_creator" FromRole="menu" ToRole="user" />
           <NavigationProperty Name="menu_detail" Relationship="Self.FK_menu_detail" FromRole="menu" ToRole="menu_detail" />
-          <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="menu_detail">
           <Key>
@@ -574,6 +599,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="role" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
@@ -588,7 +614,6 @@
           <NavigationProperty Name="orders1" Relationship="Self.FK_UserOder" FromRole="user" ToRole="order" />
           <NavigationProperty Name="transactions" Relationship="Self.FK_StaffTransaction" FromRole="user" ToRole="transaction" />
           <NavigationProperty Name="transactions1" Relationship="Self.FK_UserTransaction" FromRole="user" ToRole="transaction" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
         </EntityType>
         <Association Name="FK_UserBalance">
           <End Role="user" Type="Self.user" Multiplicity="1" />
@@ -788,6 +813,7 @@
           <EntitySet Name="comboes" EntityType="Self.combo" />
           <EntitySet Name="foods" EntityType="Self.food" />
           <EntitySet Name="food_combo" EntityType="Self.food_combo" />
+          <EntitySet Name="index_table" EntityType="Self.index_table" />
           <EntitySet Name="menus" EntityType="Self.menu" />
           <EntitySet Name="menu_detail" EntityType="Self.menu_detail" />
           <EntitySet Name="orders" EntityType="Self.order" />
@@ -860,15 +886,24 @@
             <End Role="user" EntitySet="users" />
             <End Role="transaction" EntitySet="transactions" />
           </AssociationSet>
-          <EntitySet Name="index_table" EntityType="OrderSystemModel.index_table" />
+          <FunctionImport Name="sp_add_record_balance">
+            <Parameter Name="userID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_check_login" ReturnType="Collection(Int32)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_check_user" ReturnType="Collection(Int32)">
+            <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_get_last_index" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_balance">
+            <Parameter Name="userID" Mode="In" Type="String" />
+            <Parameter Name="amount" Mode="In" Type="Double" />
+          </FunctionImport>
         </EntityContainer>
-        <EntityType Name="index_table">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="value" Type="Int32" Nullable="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -895,25 +930,25 @@
           <EntitySetMapping Name="comboes">
             <EntityTypeMapping TypeName="OrderSystemModel.combo">
               <MappingFragment StoreEntitySet="combo">
-                <ScalarProperty Name="disable" ColumnName="disable" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="discount_price" ColumnName="discount_price" />
                 <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="disable" ColumnName="disable" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="foods">
             <EntityTypeMapping TypeName="OrderSystemModel.food">
               <MappingFragment StoreEntitySet="food">
-                <ScalarProperty Name="disable" ColumnName="disable" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="categoryID" ColumnName="categoryID" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="disable" ColumnName="disable" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -926,13 +961,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="index_table">
+            <EntityTypeMapping TypeName="OrderSystemModel.index_table">
+              <MappingFragment StoreEntitySet="index_table">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="value" ColumnName="value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="menus">
             <EntityTypeMapping TypeName="OrderSystemModel.menu">
               <MappingFragment StoreEntitySet="menu">
-                <ScalarProperty Name="menu_name" ColumnName="menu_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="date_create" ColumnName="date_create" />
                 <ScalarProperty Name="creator" ColumnName="creator" />
+                <ScalarProperty Name="menu_name" ColumnName="menu_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1008,8 +1051,8 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="OrderSystemModel.user">
               <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1021,14 +1064,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="index_table">
-            <EntityTypeMapping TypeName="OrderSystemModel.index_table">
-              <MappingFragment StoreEntitySet="index_table">
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_add_record_balance" FunctionName="OrderSystemModel.Store.sp_add_record_balance" />
+          <FunctionImportMapping FunctionImportName="sp_check_login" FunctionName="OrderSystemModel.Store.sp_check_login" />
+          <FunctionImportMapping FunctionImportName="sp_check_user" FunctionName="OrderSystemModel.Store.sp_check_user" />
+          <FunctionImportMapping FunctionImportName="sp_get_last_index" FunctionName="OrderSystemModel.Store.sp_get_last_index" />
+          <FunctionImportMapping FunctionImportName="sp_update_balance" FunctionName="OrderSystemModel.Store.sp_update_balance" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

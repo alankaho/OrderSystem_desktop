@@ -25,6 +25,7 @@ namespace COID_System.Entity
         }
     
         public string id { get; set; }
+        public string username { get; set; }
         public string password { get; set; }
         public int role { get; set; }
         public string name { get; set; }
@@ -33,7 +34,6 @@ namespace COID_System.Entity
         public string email { get; set; }
         public string avt_img { get; set; }
         public bool is_active { get; set; }
-        public string username { get; set; }
     
         public virtual balance balance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

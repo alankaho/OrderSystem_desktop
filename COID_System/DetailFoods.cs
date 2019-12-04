@@ -79,7 +79,8 @@ namespace COID_System
             listBoxFood.Items.Clear();
             comboBoxCategory.Items.Clear();
             db = new OrderSystemEntities();
-            foreach (var i in db.foods)
+            var foods = db.foods.Where(r => r.disable == false);
+            foreach (var i in foods)
             {
                 listBoxFood.Items.Add(i.name);
             }
@@ -98,13 +99,15 @@ namespace COID_System
 
 
 
-        //update info to textbox base on selected food
+        //update info to textbox based on selected food
         private void listBox1_Click(object sender, EventArgs e)
         {
             if (listBoxFood.SelectedIndex > -1 && editMode == false)
             {
-                foodSelected = new food();
-                foodSelected.name = listBoxFood.GetItemText(listBoxFood.SelectedItem);
+                foodSelected = new food
+                {
+                    name = listBoxFood.GetItemText(listBoxFood.SelectedItem)
+                };
                 category category = new category();
 
 
@@ -117,6 +120,7 @@ namespace COID_System
                     textBoxDescription.Text = foodSelected.description;
                     textBoxID.Text = foodSelected.id;
                     category = db.categories.FirstOrDefault(x => x.id == foodSelected.categoryID);
+                    
                     comboBoxCategory.Text = category.name;
 
                     button1.Enabled = true;
@@ -138,13 +142,12 @@ namespace COID_System
             {
                 if (MessageBox.Show("Are You Sure to Delete this Record ?", "EF CRUD Operation", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    foodSelected = parseInputToFood();
+                     food foodInput = parseInputToFood();
                     using (OrderSystemEntities db = new OrderSystemEntities())
                     {
-                        var entry = db.Entry(foodSelected);
-                        if (entry.State == EntityState.Detached)
-                            db.foods.Attach(foodSelected);
-                        db.foods.Remove(foodSelected);
+                        
+                        foodSelected.disable = true;
+                        db.Entry(foodSelected).State = EntityState.Modified;
                         db.SaveChanges();
                         FillListFood();
                         offMode();
@@ -165,7 +168,6 @@ namespace COID_System
                 {
 
                     db.foods.Add(foodSelected);
-
                     db.SaveChanges();
                 }
                 offMode();
@@ -180,13 +182,17 @@ namespace COID_System
             }
             else
             {
-                foodSelected = parseInputToFood();
+
+                food foodInput = parseInputToFood();
 
                 using (OrderSystemEntities db = new OrderSystemEntities())
                 {
-
+                    
+                    foodSelected.disable = true;
                     db.Entry(foodSelected).State = EntityState.Modified;
+                    db.SaveChanges();
 
+                    db.foods.Add(foodInput);
                     db.SaveChanges();
                 }
                 offMode();
@@ -263,13 +269,14 @@ namespace COID_System
         {
             category category = new category();
             category = db.categories.FirstOrDefault(x => x.name == comboBoxCategory.Text);
-            foodSelected = new food();
-            foodSelected.id = textBoxID.Text.Trim();
-            foodSelected.name = textBoxName.Text.Trim();
-            foodSelected.description = textBoxDescription.Text.Trim();
-            foodSelected.price = float.Parse(textBoxPrice.Text);
-            foodSelected.categoryID = category.id;
-            return foodSelected;
+            food inputToFood = new food();
+            inputToFood.id = textBoxID.Text.Trim();
+            inputToFood.name = textBoxName.Text.Trim();
+            inputToFood.description = textBoxDescription.Text.Trim();
+            inputToFood.price = float.Parse(textBoxPrice.Text);
+            inputToFood.categoryID = category.id;
+            inputToFood.disable = false;
+            return inputToFood;
         }
 
         private void buttonCombo_Click(object sender, EventArgs e)

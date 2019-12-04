@@ -90,67 +90,61 @@
       <DependentUpon>DetailFoods.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\balance.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CategoryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CategoryForm.Designer.cs">
-      <DependentUpon>CategoryForm.cs</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\category.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\combo.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\food.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\food_combo.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\index_table.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\menu.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\menu_detail.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\ModelData.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelData.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\ModelData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\ModelData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelData.edmx</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\order.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OrderSystem.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderSystem.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OrderSystem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OrderSystem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderSystem.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entity\order_detail.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\service_time.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\time_menu.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\transaction.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\user.cs">
-      <DependentUpon>ModelData.tt</DependentUpon>
+      <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -199,9 +193,6 @@
     <EmbeddedResource Include="CategoryDetail.resx">
       <DependentUpon>CategoryDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CategoryForm.resx">
-      <DependentUpon>CategoryForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DetailCombo.resx">
       <DependentUpon>DetailCombo.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,12 +232,12 @@
     <EmbeddedResource Include="Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Entity\ModelData.edmx">
+    <EntityDeploy Include="Entity\OrderSystem.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelData.Designer.cs</LastGenOutput>
+      <LastGenOutput>OrderSystem.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entity\ModelData.edmx.diagram">
-      <DependentUpon>ModelData.edmx</DependentUpon>
+    <None Include="Entity\OrderSystem.edmx.diagram">
+      <DependentUpon>OrderSystem.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\COID_System.Entity.category.datasource" />
@@ -265,22 +256,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entity\ModelData.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelData.Context.cs</LastGenOutput>
-      <DependentUpon>ModelData.edmx</DependentUpon>
-    </Content>
-    <Content Include="Entity\ModelData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelData.edmx</DependentUpon>
-      <LastGenOutput>ModelData.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Entity\OrderSystem.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OrderSystem.edmx</DependentUpon>
+      <LastGenOutput>OrderSystem.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entity\OrderSystem.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OrderSystem.edmx</DependentUpon>
+      <LastGenOutput>OrderSystem.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
