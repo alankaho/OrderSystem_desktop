@@ -71,11 +71,6 @@
     <Compile Include="CategoryDetail.Designer.cs">
       <DependentUpon>CategoryDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAO\DaoFoodCombo.cs" />
-    <Compile Include="DAO\DaoCombo.cs" />
-    <Compile Include="DAO\DaoFood.cs" />
-    <Compile Include="DAO\DbConnect.cs" />
-    <Compile Include="DAO\DaoCategory.cs" />
     <Compile Include="DetailCombo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,6 +108,9 @@
       <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\food_combo.cs">
+      <DependentUpon>ModelData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\index_table.cs">
       <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\menu.cs">

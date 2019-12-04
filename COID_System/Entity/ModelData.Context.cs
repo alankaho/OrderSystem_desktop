@@ -38,5 +38,6 @@ namespace COID_System.Entity
         public virtual DbSet<time_menu> time_menu { get; set; }
         public virtual DbSet<transaction> transactions { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<index_table> index_table { get; set; }
     }
 }

@@ -26,6 +26,7 @@ namespace COID_System.Entity
         public int id { get; set; }
         public System.DateTime date_create { get; set; }
         public string creator { get; set; }
+        public string menu_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<time_menu> time_menu { get; set; }

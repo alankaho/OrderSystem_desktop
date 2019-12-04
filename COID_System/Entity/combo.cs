@@ -26,6 +26,7 @@ namespace COID_System.Entity
         public double price { get; set; }
         public double discount_price { get; set; }
         public System.DateTime create_time { get; set; }
+        public Nullable<bool> disable { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<food_combo> food_combo { get; set; }

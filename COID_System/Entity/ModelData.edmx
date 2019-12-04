@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OrderSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OrderSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="balance">
           <Key>
             <PropertyRef Name="userID" />
@@ -30,6 +30,7 @@
           <Property Name="price" Type="float" Nullable="false" />
           <Property Name="discount_price" Type="float" Nullable="false" />
           <Property Name="create_time" Type="datetime" Nullable="false" />
+          <Property Name="disable" Type="bit" />
         </EntityType>
         <EntityType Name="food">
           <Key>
@@ -40,6 +41,7 @@
           <Property Name="categoryID" Type="int" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="disable" Type="bit" />
         </EntityType>
         <EntityType Name="food_combo">
           <Key>
@@ -50,6 +52,13 @@
           <Property Name="comboID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="price" Type="float" Nullable="false" />
         </EntityType>
+        <EntityType Name="index_table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="value" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="menu">
           <Key>
             <PropertyRef Name="id" />
@@ -57,6 +66,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="date_create" Type="date" Nullable="false" />
           <Property Name="creator" Type="char" MaxLength="10" />
+          <Property Name="menu_name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="menu_detail">
           <Key>
@@ -127,6 +137,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="username" Type="char" MaxLength="20" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="role" Type="int" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
@@ -334,6 +345,7 @@
           <EntitySet Name="combo" EntityType="Self.combo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="food" EntityType="Self.food" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="food_combo" EntityType="Self.food_combo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="index_table" EntityType="Self.index_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="menu" EntityType="Self.menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="menu_detail" EntityType="Self.menu_detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
@@ -407,8 +419,7 @@
             <End Role="transaction" EntitySet="transaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OrderSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -440,6 +451,7 @@
           <Property Name="discount_price" Type="Double" Nullable="false" />
           <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="food_combo" Relationship="Self.FK_ComboFood" FromRole="combo" ToRole="food_combo" />
+          <Property Name="disable" Type="Boolean" />
         </EntityType>
         <EntityType Name="food">
           <Key>
@@ -452,6 +464,7 @@
           <Property Name="price" Type="Double" Nullable="false" />
           <NavigationProperty Name="category" Relationship="Self.FK_FoodCategory" FromRole="food" ToRole="category" />
           <NavigationProperty Name="food_combo" Relationship="Self.FK_FoodCombo" FromRole="food" ToRole="food_combo" />
+          <Property Name="disable" Type="Boolean" />
         </EntityType>
         <EntityType Name="food_combo">
           <Key>
@@ -476,6 +489,7 @@
           <NavigationProperty Name="time_menu2" Relationship="Self.FK_lunch_mid" FromRole="menu" ToRole="time_menu" />
           <NavigationProperty Name="user" Relationship="Self.FK_menu_creator" FromRole="menu" ToRole="user" />
           <NavigationProperty Name="menu_detail" Relationship="Self.FK_menu_detail" FromRole="menu" ToRole="menu_detail" />
+          <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="menu_detail">
           <Key>
@@ -574,6 +588,7 @@
           <NavigationProperty Name="orders1" Relationship="Self.FK_UserOder" FromRole="user" ToRole="order" />
           <NavigationProperty Name="transactions" Relationship="Self.FK_StaffTransaction" FromRole="user" ToRole="transaction" />
           <NavigationProperty Name="transactions1" Relationship="Self.FK_UserTransaction" FromRole="user" ToRole="transaction" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
         </EntityType>
         <Association Name="FK_UserBalance">
           <End Role="user" Type="Self.user" Multiplicity="1" />
@@ -845,7 +860,15 @@
             <End Role="user" EntitySet="users" />
             <End Role="transaction" EntitySet="transactions" />
           </AssociationSet>
+          <EntitySet Name="index_table" EntityType="OrderSystemModel.index_table" />
         </EntityContainer>
+        <EntityType Name="index_table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -872,6 +895,7 @@
           <EntitySetMapping Name="comboes">
             <EntityTypeMapping TypeName="OrderSystemModel.combo">
               <MappingFragment StoreEntitySet="combo">
+                <ScalarProperty Name="disable" ColumnName="disable" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -884,6 +908,7 @@
           <EntitySetMapping Name="foods">
             <EntityTypeMapping TypeName="OrderSystemModel.food">
               <MappingFragment StoreEntitySet="food">
+                <ScalarProperty Name="disable" ColumnName="disable" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="categoryID" ColumnName="categoryID" />
@@ -904,6 +929,7 @@
           <EntitySetMapping Name="menus">
             <EntityTypeMapping TypeName="OrderSystemModel.menu">
               <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="menu_name" ColumnName="menu_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="date_create" ColumnName="date_create" />
                 <ScalarProperty Name="creator" ColumnName="creator" />
@@ -982,6 +1008,7 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="OrderSystemModel.user">
               <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="role" ColumnName="role" />
@@ -991,6 +1018,14 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="avt_img" ColumnName="avt_img" />
                 <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="index_table">
+            <EntityTypeMapping TypeName="OrderSystemModel.index_table">
+              <MappingFragment StoreEntitySet="index_table">
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

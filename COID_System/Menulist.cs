@@ -51,6 +51,32 @@ namespace COID_System
             }
         }
 
+        private void AddEditModeOn(bool addMode1)
+        {
+
+            if (addMode1)
+            {
+                addMode = true;
+
+                
+                button2.Text = "Add";
+                button1.Text = "Back";
+
+
+            }
+            else
+            {
+                editMode = true;
+                button2.Text = "Confirm";
+                button1.Text = "Back";
+            }
+
+            buttonAdd.Enabled = false;
+            textBoxName.ReadOnly = false;
+           
+            checkedListBox1.Enabled = true;
+        }
+
         public void offMode()
         {
             textBoxName.Enabled = false;
@@ -73,15 +99,12 @@ namespace COID_System
             {
                 if (MessageBox.Show("Are You Sure to Delete this Record ?", "EF CRUD Operation", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    foodSelected = parseInputToFood();
+                    
                     using (OrderSystemEntities db = new OrderSystemEntities())
                     {
-                        var entry = db.Entry(foodSelected);
-                        if (entry.State == EntityState.Detached)
-                            db.foods.Attach(foodSelected);
-                        db.foods.Remove(foodSelected);
-                        db.SaveChanges();
-                        FillListFood();
+                        
+                        
+                        FillForm();
                         offMode();
 
                         MessageBox.Show("Deleted Successfully");
@@ -92,39 +115,82 @@ namespace COID_System
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //add
             if (addMode == true)
             {
-                foodSelected = parseInputToFood();
+                menu inputToMenu = parseInputToMenu();
                 using (OrderSystemEntities db = new OrderSystemEntities())
                 {
 
-                    db.foods.Add(foodSelected);
-
+                    db.menus.Add(inputToMenu);
                     db.SaveChanges();
+                    foreach (food foodname in checkedListBox1.CheckedItems)
+                    {
+
+                        
+                    }
+
                 }
+
                 offMode();
-                FillListFood();
+                FillForm();
                 MessageBox.Show("done!");
                 return;
+
             }
 
+            //edit mode
             if (editMode == false)
             {
-                editModeOn();
+                AddEditModeOn(false);
             }
             else
             {
-                foodSelected = parseInputToFood();
+                //edit combo
 
-                using (OrderSystemEntities db = new OrderSystemEntities())
+                OrderSystemEntities db = new OrderSystemEntities();
+
+               
+
+
+
+
+                //edit foodcombo
+                listFoodEdited.Clear();
+                foreach (food item in checkedListBox1.CheckedItems)
                 {
 
-                    db.Entry(foodSelected).State = EntityState.Modified;
-
-                    db.SaveChanges();
+                    listFoodEdited.Add(item.name);
                 }
+
+                int acount = 0;
+                int dcount = 0;
+                //var foodList = db.foods.Where(p => p.name.Contains(index));
+                //if listFoodEdited not in listFoodCombo -> add
+                foreach (string foodname in listFoodEdited)
+                {
+                    if (!listFoodCombo.Contains(foodname))
+                    {
+                        acount = acount + 1;
+                        food food = db.foods.FirstOrDefault(x => x.name == foodname);
+
+                       
+                    }
+                }
+
+                MessageBox.Show("added " + acount + " food(s)=");
+
+                //if listFoodCombo not in listFoodEdited -> delete
+                foreach (string foodname in listFoodCombo)
+                {
+                    if (!listFoodEdited.Contains(foodname))
+                    {
+                       
+                    }
+                }
+                MessageBox.Show("deleted " + dcount + " foods=");
                 offMode();
-                FillListFood();
+                FillForm();
                 MessageBox.Show("done!");
             }
 
@@ -134,6 +200,13 @@ namespace COID_System
         private void buttonAdd_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private menu parseInputToMenu()
+        {
+
+
+            return null;
         }
     }
 }
