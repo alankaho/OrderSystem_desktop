@@ -37,7 +37,11 @@ namespace COID_System
             checkedListBoxFood.MultiColumn = true;
             OrderSystemEntities db = new OrderSystemEntities();
 
-            foreach (food i in db.foods)
+            var foodlist = db.foods.Where(r => r.disable == false);
+            var combolist = db.comboes.Where(r => r.disable == false);
+
+
+            foreach (var i in foodlist)
             {
                 checkedListBoxFood.Items.Add(i);
             }
@@ -45,7 +49,7 @@ namespace COID_System
 
             //fill combo checklist
            
-            foreach (var i in db.comboes)
+            foreach (var i in combolist)
             {
                 checkedListBoxCombo.Items.Add(i);
             }
@@ -202,11 +206,99 @@ namespace COID_System
             AddEditModeOn(true);
         }
 
+
+
+
+
         private menu parseInputToMenu()
         {
+            menu tempMenu = new menu();
+            tempMenu.id = Int32.Parse(textBoxID.Text);
+            tempMenu.menu_name = textBoxName.Text;
+            tempMenu.creator = textBoxCreator.Text;
+            tempMenu.date_create = DateTime.Today;
+            tempMenu.disable = false;
 
+            return tempMenu;
+        }
 
-            return null;
+        //import data on menu
+        private void listBoxMenu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listFoodCombo.Clear();
+            //deselected all food
+            for (int i = 0; i < checkedListBoxFood.Items.Count; i++)
+            {
+
+                checkedListBoxFood.SetItemChecked(i, false);
+
+            }
+            //deselected all combo
+            for (int i = 0; i < checkedListBoxCombo.Items.Count; i++)
+            {
+
+                checkedListBoxCombo.SetItemChecked(i, false);
+
+            }
+
+            //put all data into textbox
+            if (listBoxMenu.SelectedIndex > -1)
+            {
+                menu selectedMenu = new menu();
+                selectedMenu = (menu)listBoxMenu.SelectedItem;
+                using (OrderSystemEntities db = new OrderSystemEntities())
+                {
+                    selectedMenu = db.menus.FirstOrDefault(x => x.id == selectedMenu.id);
+                   // comboTemp = selectedMenu;
+                    if (selectedMenu == null)
+                    {
+                        MessageBox.Show("Error");
+                        return;
+                    }
+                    textBoxName.Text = selectedMenu.menu_name;
+                    textBoxID.Text = selectedMenu.id.ToString();
+                    textBoxDate.Text = selectedMenu.date_create.ToShortTimeString();
+                    
+                 
+
+                    //set food selected
+
+                    var menuDetails = db.menu_detail.Where(r => r.menuId == selectedMenu.id);
+                    foreach (menu_detail md in menuDetails)
+                    {
+                        food food1 = db.foods.FirstOrDefault(x => x.id == md.productID);
+                        combo combo1 = db.comboes.FirstOrDefault(x => x.id == md.productID);
+                        if (food1 != null)
+                        {
+                            for (int i = 0; i < checkedListBoxFood.Items.Count; i++)
+                            {
+
+                                if (food1.name == checkedListBoxFood.Items[i].ToString())
+                                {
+                                    checkedListBoxFood.SetItemChecked(i, true);
+
+                                    break;
+                                }
+                            }
+                        }
+                        if (combo1 != null)
+                        {
+                            for (int i = 0; i < checkedListBoxCombo.Items.Count; i++)
+                            {
+
+                                if (combo1.name == checkedListBoxCombo.Items[i].ToString())
+                                {
+                                    checkedListBoxFood.SetItemChecked(i, true);
+                                    break;
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
         }
     }
 }

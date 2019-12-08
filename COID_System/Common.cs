@@ -8,5 +8,7 @@ namespace COID_System
 {
     class Common
     {
+
+
     }
 }
