@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OrderSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OrderSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="balance">
           <Key>
             <PropertyRef Name="userID" />
@@ -67,6 +67,7 @@
           <Property Name="date_create" Type="date" Nullable="false" />
           <Property Name="creator" Type="char" MaxLength="10" />
           <Property Name="menu_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="disable" Type="bit" />
         </EntityType>
         <EntityType Name="menu_detail">
           <Key>
@@ -352,6 +353,14 @@
         <Function Name="sp_get_last_index" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="char" Mode="In" />
         </Function>
+        <Function Name="sp_sign_up" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="char" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="role" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_update_balance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userID" Type="char" Mode="In" />
           <Parameter Name="amount" Type="float" Mode="In" />
@@ -436,8 +445,7 @@
             <End Role="transaction" EntitySet="transaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OrderSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -515,6 +523,7 @@
           <NavigationProperty Name="time_menu2" Relationship="Self.FK_lunch_mid" FromRole="menu" ToRole="time_menu" />
           <NavigationProperty Name="user" Relationship="Self.FK_menu_creator" FromRole="menu" ToRole="user" />
           <NavigationProperty Name="menu_detail" Relationship="Self.FK_menu_detail" FromRole="menu" ToRole="menu_detail" />
+          <Property Name="disable" Type="Boolean" />
         </EntityType>
         <EntityType Name="menu_detail">
           <Key>
@@ -887,21 +896,29 @@
             <End Role="transaction" EntitySet="transactions" />
           </AssociationSet>
           <FunctionImport Name="sp_add_record_balance">
-            <Parameter Name="userID" Mode="In" Type="String" />
+          <Parameter Name="userID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_check_login" ReturnType="Collection(Int32)">
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_check_user" ReturnType="Collection(Int32)">
-            <Parameter Name="username" Mode="In" Type="String" />
+          <Parameter Name="username" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_get_last_index" ReturnType="Collection(Int32)">
-            <Parameter Name="id" Mode="In" Type="String" />
+          <Parameter Name="id" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_update_balance">
             <Parameter Name="userID" Mode="In" Type="String" />
             <Parameter Name="amount" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="sp_sign_up" ReturnType="Collection(Int32)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="role" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
@@ -972,6 +989,7 @@
           <EntitySetMapping Name="menus">
             <EntityTypeMapping TypeName="OrderSystemModel.menu">
               <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="disable" ColumnName="disable" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="date_create" ColumnName="date_create" />
                 <ScalarProperty Name="creator" ColumnName="creator" />
@@ -1069,6 +1087,7 @@
           <FunctionImportMapping FunctionImportName="sp_check_user" FunctionName="OrderSystemModel.Store.sp_check_user" />
           <FunctionImportMapping FunctionImportName="sp_get_last_index" FunctionName="OrderSystemModel.Store.sp_get_last_index" />
           <FunctionImportMapping FunctionImportName="sp_update_balance" FunctionName="OrderSystemModel.Store.sp_update_balance" />
+          <FunctionImportMapping FunctionImportName="sp_sign_up" FunctionName="OrderSystemModel.Store.sp_sign_up" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -29,30 +29,33 @@
         private void InitializeComponent()
         {
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxMenu = new System.Windows.Forms.ListBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonSchedule = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxFood = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxCombo = new System.Windows.Forms.CheckedListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(463, 13);
+            this.textBoxName.Location = new System.Drawing.Point(448, 13);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(428, 22);
             this.textBoxName.TabIndex = 0;
             // 
-            // listBox1
+            // listBoxMenu
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(59, 93);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(292, 324);
-            this.listBox1.TabIndex = 1;
+            this.listBoxMenu.FormattingEnabled = true;
+            this.listBoxMenu.ItemHeight = 16;
+            this.listBoxMenu.Location = new System.Drawing.Point(59, 93);
+            this.listBoxMenu.Name = "listBoxMenu";
+            this.listBoxMenu.Size = new System.Drawing.Size(292, 324);
+            this.listBoxMenu.TabIndex = 1;
             // 
             // buttonAdd
             // 
@@ -96,32 +99,61 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(408, 16);
+            this.label1.Location = new System.Drawing.Point(393, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 17);
             this.label1.TabIndex = 6;
             this.label1.Text = "Name:";
             // 
-            // checkedListBox1
+            // checkedListBoxFood
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(396, 53);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(519, 429);
-            this.checkedListBox1.TabIndex = 7;
+            this.checkedListBoxFood.FormattingEnabled = true;
+            this.checkedListBoxFood.Location = new System.Drawing.Point(448, 93);
+            this.checkedListBoxFood.Name = "checkedListBoxFood";
+            this.checkedListBoxFood.Size = new System.Drawing.Size(191, 395);
+            this.checkedListBoxFood.TabIndex = 7;
+            // 
+            // checkedListBoxCombo
+            // 
+            this.checkedListBoxCombo.FormattingEnabled = true;
+            this.checkedListBoxCombo.Location = new System.Drawing.Point(697, 93);
+            this.checkedListBoxCombo.Name = "checkedListBoxCombo";
+            this.checkedListBoxCombo.Size = new System.Drawing.Size(203, 395);
+            this.checkedListBoxCombo.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(448, 70);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 17);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Food:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(697, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 17);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Combo:";
             // 
             // Menulist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 524);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.checkedListBoxCombo);
+            this.Controls.Add(this.checkedListBoxFood);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonSchedule);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxMenu);
             this.Controls.Add(this.textBoxName);
             this.Name = "Menulist";
             this.Text = "Menulist";
@@ -133,12 +165,15 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxMenu;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonSchedule;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox checkedListBoxFood;
+        private System.Windows.Forms.CheckedListBox checkedListBoxCombo;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

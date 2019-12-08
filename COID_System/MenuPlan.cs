@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace COID_System
 {
-    public partial class MenuPlan : UserControl
+    public partial class MenuPlan : Form
     {
         public MenuPlan()
         {

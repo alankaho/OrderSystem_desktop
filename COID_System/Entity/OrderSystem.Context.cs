@@ -94,5 +94,34 @@ namespace COID_System.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_update_balance", userIDParameter, amountParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> sp_sign_up(string username, string password, string phone, string email, string name, Nullable<int> role)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var roleParameter = role.HasValue ?
+                new ObjectParameter("role", role) :
+                new ObjectParameter("role", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_sign_up", usernameParameter, passwordParameter, phoneParameter, emailParameter, nameParameter, roleParameter);
+        }
     }
 }

@@ -71,6 +71,7 @@
     <Compile Include="CategoryDetail.Designer.cs">
       <DependentUpon>CategoryDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common.cs" />
     <Compile Include="DetailCombo.cs">
       <SubType>UserControl</SubType>
     </Compile>

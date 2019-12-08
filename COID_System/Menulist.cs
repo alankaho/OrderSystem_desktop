@@ -21,7 +21,7 @@ namespace COID_System
         }
 
         private ArrayList listFoodCombo;
-        private ArrayList listFoodEdited;
+       
 
         public event EventHandler FoodClicked;
         private combo comboTemp;
@@ -33,13 +33,13 @@ namespace COID_System
         public void FillForm()
         {
             //fill food checklist
-            checkedListBox1.Items.Clear();
-
+            checkedListBoxFood.Items.Clear();
+            checkedListBoxFood.MultiColumn = true;
             OrderSystemEntities db = new OrderSystemEntities();
 
             foreach (food i in db.foods)
             {
-                checkedListBox1.Items.Add(i);
+                checkedListBoxFood.Items.Add(i);
             }
 
 
@@ -47,7 +47,7 @@ namespace COID_System
            
             foreach (var i in db.comboes)
             {
-                checkedListBox1.Items.Add(i);
+                checkedListBoxCombo.Items.Add(i);
             }
         }
 
@@ -74,7 +74,7 @@ namespace COID_System
             buttonAdd.Enabled = false;
             textBoxName.ReadOnly = false;
            
-            checkedListBox1.Enabled = true;
+            checkedListBoxFood.Enabled = true;
         }
 
         public void offMode()
@@ -124,10 +124,14 @@ namespace COID_System
 
                     db.menus.Add(inputToMenu);
                     db.SaveChanges();
-                    foreach (food foodname in checkedListBox1.CheckedItems)
+                    foreach (food food in checkedListBoxFood.CheckedItems)
                     {
-
-                        
+                        menu_detail menuDetail = new menu_detail();
+                        menuDetail.menuId = inputToMenu.id;
+                        menuDetail.price = food.price;
+                        menuDetail.productID = food.id;
+                        db.menu_detail.Add(menuDetail);
+                        db.SaveChanges();
                     }
 
                 }
@@ -156,39 +160,35 @@ namespace COID_System
 
 
                 //edit foodcombo
-                listFoodEdited.Clear();
-                foreach (food item in checkedListBox1.CheckedItems)
+                listFoodCombo.Clear();
+                foreach (food item in checkedListBoxFood.CheckedItems)
                 {
-
-                    listFoodEdited.Add(item.name);
+                    listFoodCombo.Add(item);
                 }
 
-                int acount = 0;
-                int dcount = 0;
-                //var foodList = db.foods.Where(p => p.name.Contains(index));
+                foreach (combo item in checkedListBoxCombo.CheckedItems)
+                {
+                    listFoodCombo.Add(item);
+                }
+               
+               
                 //if listFoodEdited not in listFoodCombo -> add
-                foreach (string foodname in listFoodEdited)
+                foreach (var foodname in listFoodCombo)
                 {
                     if (!listFoodCombo.Contains(foodname))
                     {
-                        acount = acount + 1;
-                        food food = db.foods.FirstOrDefault(x => x.name == foodname);
+                       
+                        
 
                        
                     }
                 }
 
-                MessageBox.Show("added " + acount + " food(s)=");
+              
 
-                //if listFoodCombo not in listFoodEdited -> delete
-                foreach (string foodname in listFoodCombo)
-                {
-                    if (!listFoodEdited.Contains(foodname))
-                    {
-                       
-                    }
-                }
-                MessageBox.Show("deleted " + dcount + " foods=");
+               
+                
+                
                 offMode();
                 FillForm();
                 MessageBox.Show("done!");
@@ -199,7 +199,7 @@ namespace COID_System
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-
+            AddEditModeOn(true);
         }
 
         private menu parseInputToMenu()
