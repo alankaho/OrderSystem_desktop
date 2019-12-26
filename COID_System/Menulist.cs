@@ -20,7 +20,7 @@ namespace COID_System
             FillForm();
         }
 
-        private ArrayList listFoodCombo;
+        
        
 
         public event EventHandler FoodClicked;
@@ -53,6 +53,18 @@ namespace COID_System
             {
                 checkedListBoxCombo.Items.Add(i);
             }
+
+            fillMenu();
+        }
+
+        public void fillMenu()
+        {
+            OrderSystemEntities db = new OrderSystemEntities();
+            var menulist = db.menus.Where(r => r.disable == false);
+            foreach (var i in menulist)
+            {
+                listBoxMenu.Items.Add(i);
+            }
         }
 
         private void AddEditModeOn(bool addMode1)
@@ -65,8 +77,11 @@ namespace COID_System
                 
                 button2.Text = "Add";
                 button1.Text = "Back";
-
-
+                textBoxCreator.Text = "";
+                textBoxDate.Text = "";
+                textBoxID.Text = "";
+                textBoxName.Text = "";
+                deselectFoodCombo();
             }
             else
             {
@@ -74,7 +89,7 @@ namespace COID_System
                 button2.Text = "Confirm";
                 button1.Text = "Back";
             }
-
+            listBoxMenu.Enabled = false;
             buttonAdd.Enabled = false;
             textBoxName.ReadOnly = false;
            
@@ -83,13 +98,13 @@ namespace COID_System
 
         public void offMode()
         {
-            textBoxName.Enabled = false;
+            
             addMode = false;
             editMode = false;
             button2.Text = "Edit";
             button1.Text = "Delete";
-
-            
+            listBoxMenu.Enabled = true;
+            button2.Enabled = false;
             buttonAdd.Enabled = true;
         }
 
@@ -154,17 +169,17 @@ namespace COID_System
             }
             else
             {
-                //edit combo
+                
 
                 OrderSystemEntities db = new OrderSystemEntities();
 
-               
+
 
 
 
 
                 //edit foodcombo
-                listFoodCombo.Clear();
+                ArrayList listFoodCombo = new ArrayList();
                 foreach (food item in checkedListBoxFood.CheckedItems)
                 {
                     listFoodCombo.Add(item);
@@ -225,27 +240,16 @@ namespace COID_System
         //import data on menu
         private void listBoxMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listFoodCombo.Clear();
-            //deselected all food
-            for (int i = 0; i < checkedListBoxFood.Items.Count; i++)
-            {
 
-                checkedListBoxFood.SetItemChecked(i, false);
 
-            }
-            //deselected all combo
-            for (int i = 0; i < checkedListBoxCombo.Items.Count; i++)
-            {
-
-                checkedListBoxCombo.SetItemChecked(i, false);
-
-            }
-
+            deselectFoodCombo();
+            button2.Enabled = true;
+            button1.Enabled = true;
             //put all data into textbox
             if (listBoxMenu.SelectedIndex > -1)
             {
-                menu selectedMenu = new menu();
-                selectedMenu = (menu)listBoxMenu.SelectedItem;
+                 
+                 menu selectedMenu = (menu)listBoxMenu.SelectedItem;
                 using (OrderSystemEntities db = new OrderSystemEntities())
                 {
                     selectedMenu = db.menus.FirstOrDefault(x => x.id == selectedMenu.id);
@@ -257,8 +261,8 @@ namespace COID_System
                     }
                     textBoxName.Text = selectedMenu.menu_name;
                     textBoxID.Text = selectedMenu.id.ToString();
-                    textBoxDate.Text = selectedMenu.date_create.ToShortTimeString();
-                    
+                    textBoxDate.Text = selectedMenu.date_create.ToShortDateString();
+                    textBoxCreator.Text = selectedMenu.creator;
                  
 
                     //set food selected
@@ -297,6 +301,24 @@ namespace COID_System
                     }
 
                 }
+
+            }
+        }
+
+        public void deselectFoodCombo()
+        {
+            //deselected all food
+            for (int i = 0; i < checkedListBoxFood.Items.Count; i++)
+            {
+
+                checkedListBoxFood.SetItemChecked(i, false);
+
+            }
+            //deselected all combo
+            for (int i = 0; i < checkedListBoxCombo.Items.Count; i++)
+            {
+
+                checkedListBoxCombo.SetItemChecked(i, false);
 
             }
         }
