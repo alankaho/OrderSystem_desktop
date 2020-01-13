@@ -16,24 +16,80 @@ namespace COID_System
         public MenuPlan()
         {
             InitializeComponent();
+            loadMenuToComboBox();
         }
 
-        public void loadform()
+        public void loadMenuToComboBox()
         {
-            
+            OrderSystemEntities db = new OrderSystemEntities();
+            foreach (var i in db.menus)
+            {
+                comboBoxBreakfast.Items.Add(i.menu_name);
+                comboBoxLunch.Items.Add(i.menu_name);
+                comboBoxDinner.Items.Add(i.menu_name);
+
+            }
+
         }
 
        
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
+            OrderSystemEntities db = new OrderSystemEntities();
+            
+            time_menu date = db.time_menu.FirstOrDefault(x => x.date_service == monthCalendar1.SelectionRange.Start);
+            if (date != null)
+            {
+                if (date.breakfast_mId == null)
+                {
+                    comboBoxBreakfast.Text = "Empty";
+                }
+                else
+                {
+                   
+                    comboBoxBreakfast.Text = date.menu.menu_name.ToString();
+                }
+                if (date.lunch_mId == null)
+                {
+                    comboBoxLunch.Text = "Empty";
+                }
+                else
+                {
+                   
+                    comboBoxLunch.Text = date.menu1.menu_name.ToString();
+                }
+                if (date.dinner_mId == null)
+                {
+                    comboBoxDinner.Text = "Empty";
+                }
+                else
+                {
+                   
+                    comboBoxDinner.Text = date.menu2.menu_name.ToString();
+                }
+            }
+            else
+            {
+                comboBoxBreakfast.Text = "Empty";
+                comboBoxLunch.Text = "Empty";
+                comboBoxDinner.Text = "Empty";
+            }
+            
 
+            
+            
+            
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+
+
             listBox1.Items.Clear();
-            listBox2.Items.Clear();
+            
             OrderSystemEntities db = new OrderSystemEntities();
 
             var foodlist = db.foods.Where(r => r.disable == false);
@@ -50,7 +106,7 @@ namespace COID_System
 
             foreach (var i in combolist)
             {
-                listBox2.Items.Add(i);
+                listBox1.Items.Add(i);
             }
         }
     }

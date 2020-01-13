@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="OrderSystemModel.order" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderSystemModel.order_detail" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderSystemModel.service_time" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrderSystemModel.time_menu" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderSystemModel.time_menu" Width="1.5" PointX="5.5" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderSystemModel.transaction" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderSystemModel.user" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
         <AssociationConnector Association="OrderSystemModel.FK_UserBalance" ManuallyRouted="false" />

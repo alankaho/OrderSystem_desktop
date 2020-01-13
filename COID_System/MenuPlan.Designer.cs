@@ -31,12 +31,12 @@
             this.buttonSchedule = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.listBox2 = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxBreakfast = new System.Windows.Forms.ComboBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBoxLunch = new System.Windows.Forms.ComboBox();
+            this.comboBoxDinner = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
@@ -66,14 +66,14 @@
             this.listBox2.Size = new System.Drawing.Size(477, 100);
             this.listBox2.TabIndex = 10;
             // 
-            // comboBox1
+            // comboBoxBreakfast
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(548, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(197, 24);
-            this.comboBox1.TabIndex = 14;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxBreakfast.FormattingEnabled = true;
+            this.comboBoxBreakfast.Location = new System.Drawing.Point(548, 12);
+            this.comboBoxBreakfast.Name = "comboBoxBreakfast";
+            this.comboBoxBreakfast.Size = new System.Drawing.Size(271, 24);
+            this.comboBoxBreakfast.TabIndex = 14;
+            this.comboBoxBreakfast.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // radioButton1
             // 
@@ -108,21 +108,21 @@
             this.radioButton3.Text = "Dinner";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // comboBoxLunch
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(548, 158);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(197, 24);
-            this.comboBox2.TabIndex = 18;
+            this.comboBoxLunch.FormattingEnabled = true;
+            this.comboBoxLunch.Location = new System.Drawing.Point(548, 158);
+            this.comboBoxLunch.Name = "comboBoxLunch";
+            this.comboBoxLunch.Size = new System.Drawing.Size(271, 24);
+            this.comboBoxLunch.TabIndex = 18;
             // 
-            // comboBox3
+            // comboBoxDinner
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(548, 321);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(197, 24);
-            this.comboBox3.TabIndex = 19;
+            this.comboBoxDinner.FormattingEnabled = true;
+            this.comboBoxDinner.Location = new System.Drawing.Point(548, 321);
+            this.comboBoxDinner.Name = "comboBoxDinner";
+            this.comboBoxDinner.Size = new System.Drawing.Size(271, 24);
+            this.comboBoxDinner.TabIndex = 19;
             // 
             // listBox1
             // 
@@ -147,9 +147,9 @@
             this.ClientSize = new System.Drawing.Size(927, 524);
             this.Controls.Add(this.listBox3);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxDinner);
+            this.Controls.Add(this.comboBoxLunch);
+            this.Controls.Add(this.comboBoxBreakfast);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -170,12 +170,12 @@
         private System.Windows.Forms.Button buttonSchedule;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxBreakfast;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBoxLunch;
+        private System.Windows.Forms.ComboBox comboBoxDinner;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox3;
     }
