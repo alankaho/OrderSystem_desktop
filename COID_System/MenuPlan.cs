@@ -149,5 +149,10 @@ namespace COID_System
                 listBox3.Items.Add(i);
             }
         }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
