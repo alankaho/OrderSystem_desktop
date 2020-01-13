@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -29,6 +30,11 @@ namespace COID_System
                 comboBoxDinner.Items.Add(i.menu_name);
 
             }
+            comboBoxBreakfast.Items.Add("Empty");
+            comboBoxLunch.Items.Add("Empty");
+            comboBoxDinner.Items.Add("Empty");
+
+
 
         }
 
@@ -44,6 +50,7 @@ namespace COID_System
                 if (date.breakfast_mId == null)
                 {
                     comboBoxBreakfast.Text = "Empty";
+                   
                 }
                 else
                 {
@@ -53,6 +60,7 @@ namespace COID_System
                 if (date.lunch_mId == null)
                 {
                     comboBoxLunch.Text = "Empty";
+                    
                 }
                 else
                 {
@@ -62,6 +70,7 @@ namespace COID_System
                 if (date.dinner_mId == null)
                 {
                     comboBoxDinner.Text = "Empty";
+                
                 }
                 else
                 {
@@ -74,6 +83,7 @@ namespace COID_System
                 comboBoxBreakfast.Text = "Empty";
                 comboBoxLunch.Text = "Empty";
                 comboBoxDinner.Text = "Empty";
+                
             }
             
 
@@ -85,28 +95,58 @@ namespace COID_System
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
-
             listBox1.Items.Clear();
-            
             OrderSystemEntities db = new OrderSystemEntities();
 
-            var foodlist = db.foods.Where(r => r.disable == false);
-            var combolist = db.comboes.Where(r => r.disable == false);
-
+            ArrayList foodlist = DAOcombo.combosFromMenu(comboBoxBreakfast.Text);
+            ArrayList combolist = DAOcombo.foodsFromMenu(comboBoxBreakfast.Text);
 
             foreach (var i in foodlist)
             {
                 listBox1.Items.Add(i);
             }
-
-
-            //fill combo checklist
-
             foreach (var i in combolist)
             {
                 listBox1.Items.Add(i);
+            }
+        }
+
+        private void comboBoxLunch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBox2.Items.Clear();
+            OrderSystemEntities db = new OrderSystemEntities();
+            
+            ArrayList foodlist = DAOcombo.combosFromMenu(comboBoxLunch.Text);
+            ArrayList combolist = DAOcombo.foodsFromMenu(comboBoxLunch.Text);
+
+            foreach (var i in foodlist)
+            {
+                listBox2.Items.Add(i);
+            }
+            foreach (var i in combolist)
+            {
+                listBox2.Items.Add(i);
+            }
+
+            
+
+        }
+
+        private void comboBoxDinner_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBox3.Items.Clear();
+            OrderSystemEntities db = new OrderSystemEntities();
+
+            ArrayList foodlist = DAOcombo.combosFromMenu(comboBoxDinner.Text);
+            ArrayList combolist = DAOcombo.foodsFromMenu(comboBoxDinner.Text);
+
+            foreach (var i in foodlist)
+            {
+                listBox3.Items.Add(i);
+            }
+            foreach (var i in combolist)
+            {
+                listBox3.Items.Add(i);
             }
         }
     }

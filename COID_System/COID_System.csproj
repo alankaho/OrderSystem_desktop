@@ -99,6 +99,7 @@
     <Compile Include="Entity\combo.cs">
       <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\DAOcombo.cs" />
     <Compile Include="Entity\food.cs">
       <DependentUpon>OrderSystem.tt</DependentUpon>
     </Compile>
