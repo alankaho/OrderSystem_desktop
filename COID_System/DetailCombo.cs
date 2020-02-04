@@ -26,6 +26,7 @@ namespace COID_System
         
         public event EventHandler FoodClicked;
         private combo comboTemp;
+        private combo selectedCombo;
         
         private bool addMode { get; set; }
         private bool editMode { get; set; }
@@ -318,8 +319,8 @@ namespace COID_System
             if (listBoxCombo.SelectedIndex > -1)
             {
                 combo selectedCombo = new combo();
-                selectedCombo = (combo)listBoxCombo.SelectedItem;
-               
+                this.selectedCombo = selectedCombo = (combo)listBoxCombo.SelectedItem;
+                
 
 
                 using (OrderSystemEntities db = new OrderSystemEntities())
@@ -377,7 +378,7 @@ namespace COID_System
 
             if (editMode)
             {
-                combo selectedCombo = (combo)listBoxCombo.SelectedItem;
+                combo selectedCombo = this.selectedCombo;
                 selectedCombo = db.comboes.FirstOrDefault(x => x.id == selectedCombo.id);
                 var foodcombo = db.food_combo.Where(r => r.comboID == selectedCombo.id);
                 foreach (food_combo fc in foodcombo)
@@ -394,7 +395,7 @@ namespace COID_System
                     }
                 }
             }
-           
+
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)

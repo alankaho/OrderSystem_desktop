@@ -17,7 +17,7 @@ namespace COID_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MenuPlan());
+            Application.Run(new MainForm());
 
         }
 
