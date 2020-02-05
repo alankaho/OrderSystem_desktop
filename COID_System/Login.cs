@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using COID_System.Entity;
 
 namespace COID_System
 {
@@ -18,6 +19,7 @@ namespace COID_System
            
             
             InitializeComponent();
+            textBoxPass.PasswordChar = '*';
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -27,9 +29,26 @@ namespace COID_System
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            mf = new MainForm();
-            mf.Show();
+            String username = textBoxName.Text;
+            String pass = textBoxPass.Text; 
+            user name = DAOuser.LoginCheck(username,pass);
+            if (name != null)
+            {
+                this.Hide();
+                if (name.role == 1)
+                {
+                    MessageBox.Show("Welcome manager " + name.name);
+                }
+                else
+                {
+                    MessageBox.Show("Welcome employee " + name.name);
+                }
+                
+                mf = new MainForm();
+                mf.Show();
+            }
+            
+            
 
 
 

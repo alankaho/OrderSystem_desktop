@@ -110,7 +110,6 @@
             this.buttonSearch.TabIndex = 26;
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Visible = false;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // checkedListBox1
@@ -148,7 +147,6 @@
             this.labelSearch.Size = new System.Drawing.Size(93, 17);
             this.labelSearch.TabIndex = 20;
             this.labelSearch.Text = "Search Food:";
-            this.labelSearch.Visible = false;
             // 
             // textBoxSearch
             // 
@@ -156,7 +154,6 @@
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(194, 22);
             this.textBoxSearch.TabIndex = 19;
-            this.textBoxSearch.Visible = false;
             // 
             // label5
             // 
@@ -289,12 +286,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 596);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonFood);
             this.Controls.Add(this.listBoxCombo);
             this.Name = "DetailCombo";
+            this.Size = new System.Drawing.Size(947, 596);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

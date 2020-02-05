@@ -104,9 +104,7 @@ namespace COID_System
             textBoxID.ReadOnly = false;
             textBoxDiscount.ReadOnly = false;
             listBoxCombo.Enabled = false;
-            labelSearch.Visible = true;
-            textBoxSearch.Visible = true;
-            buttonSearch.Visible = true;
+            
             checkedListBox1.Enabled = true;
         }
 
@@ -283,10 +281,7 @@ namespace COID_System
             button2.Enabled = true;
             button1.Enabled = true;
             buttonAdd.Enabled = true;
-            buttonSearch.Visible = false;
-            labelSearch.Visible = false;
-            textBoxSearch.Visible = false;
-            textBoxSearch.Text = "";
+            
             checkedListBox1.Enabled = false;
         }
 
